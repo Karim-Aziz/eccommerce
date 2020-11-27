@@ -15,6 +15,7 @@ $("#shop-slider").owlCarousel({
   dots: false,
   smartSpeed: 1000,
   responsiveClass: true,
+  rtl: true,
 });
 
 // ================== Start Project Area =========================
@@ -40,12 +41,13 @@ $(document).ready(function () {
 // ================== Start POPULAR PRODUCTS AND LATEST PRODUCTS ==================
 
 $("#product-all,#product-all-2").owlCarousel({
+  rtl: true,
   loop: true,
   margin: 20,
   autoplay: true,
   navText: [
-    "<i class='fa fa-angle-left'></i>",
     "<i class='fa fa-angle-right'></i>",
+    "<i class='fa fa-angle-left'></i>",
   ],
   autoplayTimeout: 3000,
   autoplayHoverPause: true,
@@ -69,6 +71,7 @@ $("#product-all,#product-all-2").owlCarousel({
 // =================== Start Brand ========================
 
 $("#brand").owlCarousel({
+  rtl: true,
   loop: true,
   nav: false,
   dots: false,
@@ -85,7 +88,7 @@ $("#brand").owlCarousel({
       items: 3,
     },
     1000: {
-      items: 9,
+      items: 5,
     },
   },
 });
@@ -128,27 +131,4 @@ $(function () {
       }
     },
   });
-});
-
-//
-$("input:file").change(function () {
-  var fileName = $(this).val();
-  if (fileName.length > 0) {
-    $(this).parent().children("span").html(fileName);
-  } else {
-    $(this).parent().children("span").html("Choose file");
-  }
-});
-//file input preview
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      $(".logoContainer img").attr("src", e.target.result);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-$("input:file").change(function () {
-  readURL(this);
 });

@@ -1,48 +1,29 @@
-/* Start Home Page */
-i {
-  margin-left: 8px;
+.form-control {
+  padding: 0;
 }
-.page-content {
-  left: 64%;
-  padding: 0px 66px 0 0;
+.header .navbar .form-inline .form-control {
+  padding: 0px 7px;
 }
 
-.list-group {
-  padding: 5px;
-}
-
-.testimonials img {
-  right: 81%;
-}
-
-.footer .footer-icon i {
-  margin-left: 0px;
-}
-
-.navbar {
+.header .navbar .dropdown-menu {
+  right: -111px;
   text-align: right;
 }
 
-.navbar .dropdown-item {
+.title-section h2 {
+  padding-right: 30px;
+  border: none;
+  border-right: 4px solid var(--main-color);
+}
+
+.orders .media-body {
+  margin-right: 20px;
+}
+
+.detals-product .preview-thumbnail.nav-tabs li {
+  margin: 0;
+}
+
+.custom-form {
   text-align: right;
-}
-
-/* About Page */
-
-.about-page i {
-  right: 71%;
-}
-
-.all-services .show-ser button {
-  right: 85%;
-}
-
-@media (max-width: 767.98px) {
-  .lang {
-    right: -14px;
-  }
-
-  .navbar .dropdown-item {
-    padding: 5px 12px;
-  }
 }

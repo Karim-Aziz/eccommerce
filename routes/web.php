@@ -138,12 +138,15 @@ Route::get('/', function () {
 });
 
 Route::get('/{locale}', function ($locale) {
-    if ($locale === 'ar' ) {
-        App::setLocale($locale);
-        Session::put('app_locale', $locale);
-    }else {
-        App::setLocale('en');
-        Session::put('app_locale', 'en');
+    if ($locale == 'ar' or $locale == 'en') {
+        if ($locale === 'ar' ) {
+            App::setLocale($locale);
+            Session::put('app_locale', $locale);
+        }else {
+            App::setLocale('en');
+            Session::put('app_locale', 'en');
+        }
+        return redirect()->back();
     }
-    return redirect()->back();
+    return view('errors.404');
 });
