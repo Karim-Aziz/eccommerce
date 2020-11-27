@@ -1,0 +1,51 @@
+@media (max-width: 767.98px) {
+  /* Start Header */
+  .navbar {
+    background: #d4d9d7;
+  }
+
+  .navbar .lang .btn-lan {
+    width: 100%;
+    text-align: inherit;
+  }
+
+  .navbar .dropdown-menu {
+    width: 100%;
+  }
+  /* Image Slider */
+  .slider_images img {
+    height: 50vh;
+    margin-top: 70px;
+  }
+
+  .details_product img {
+    height: 300px;
+  }
+
+  /*  */
+
+  .about .about-img img {
+    margin-bottom: 40px;
+  }
+
+  ul.filters > li > a {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .contact button {
+    margin-bottom: 20px;
+  }
+
+  .card {
+    height: auto;
+  }
+
+  .background_section {
+    height: 200px;
+  }
+
+  .details_product {
+    padding: 10px 0;
+  }
+}

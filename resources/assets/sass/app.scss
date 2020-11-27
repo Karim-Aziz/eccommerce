@@ -1,0 +1,23 @@
+
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~admin-lte/bower_components/morris.js/morris.css";
+@import "~admin-lte/bower_components/jvectormap/jquery-jvectormap.css";
+@import "~admin-lte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css";
+@import "~admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker.css";
+@import "~admin-lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.css";
+
+// font awesome
+$fa-font-path: "../fonts/" !default;
+@import "~font-awesome/scss/font-awesome";
+
+// Ionicons
+@import "~admin-lte/bower_components/Ionicons/css/ionicons.css";
+
+// admin lte
+@import "~admin-lte/dist/css/AdminLTE.css";
+@import "~admin-lte/dist/css/skins/_all-skins.css";

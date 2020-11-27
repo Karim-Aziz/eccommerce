@@ -1,0 +1,18 @@
+body {
+  direction: rtl;
+}
+
+/* Start Header */
+
+.navbar .lang::before {
+  right: 55px;
+}
+
+.page-content {
+  right: 15%;
+}
+
+/* Start Footer */
+.ar-list {
+  padding: 0;
+}
