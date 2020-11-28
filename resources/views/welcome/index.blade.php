@@ -17,7 +17,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> e commerce | @yield('title') </title>
+  <title> e commerce | Home </title>
   <!-- Import Bootstrap Css File -->
   <link rel="stylesheet" href="{{ url('/lib/bootstrap-4.4.1/css/bootstrap.min.css') }}" />
   <!-- Import Fontawesome -->
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="{{ url('/css/media.css') }}" />
   @if (App::isLocale('ar'))
     <!-- Import Custom Styles AR File -->
-    <link rel="stylesheet" href="{{ url('/css/custom_ar.css') }}" />
+    <link rel="stylesheet" href="{{ url('/css/style_ar.css') }}" />
   @endif
   @yield('css')
   @php
@@ -78,6 +78,10 @@
     <!-- jquery ui -->
     <script src="{{ url('/lib/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- =========== Custom Js File =========== -->
+    @if (App::isLocale('ar'))
+    <script src="{{ url('/js/main_ar.js') }}"></script>
+    @else
     <script src="{{ url('/js/main.js') }}"></script>
+    @endif
   </body>
 </html>
