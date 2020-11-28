@@ -61,6 +61,23 @@
                                                         @endif
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>sale</label>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="sale" value="1"
+                                                            {{$place->sale == 1 ? 'checked':''}}> sale
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="sale"
+                                                            {{$place->sale == 0 ? 'checked':''}}
+                                                                value="0">not sale
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
                                                     <label>price</label>
                                                     <input name="price" type="text" class="form-control"
                                                         value="{{old('price')? old('price'): $place->price}}">

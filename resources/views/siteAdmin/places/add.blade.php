@@ -50,6 +50,19 @@
                             @endif
                         </div>
                         <div class="form-group">
+                            <label>sale</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sale" value="1" {{ old('sale') == 1 ? 'checked':''}}> sale
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sale" value="0" {{ old('sale') == 0 ? 'checked':''}}> not sale
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>price</label>
                             <input id="price" type="text" class="form-control" name="price" value="{{ old('price') }}"
                                 required autofocus>

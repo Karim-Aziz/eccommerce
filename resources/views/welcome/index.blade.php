@@ -58,6 +58,7 @@
   @include('welcome.Navbar')
   @include('welcome.home_desc')
   @include('welcome.items')
+  @include('welcome.POPULAR')
   @include('welcome.latest')
 
 

@@ -31,8 +31,13 @@ class pagesController extends Controller
     public function place($id)
     {
         $place = places::findOrFail($id);
-        $places = places::where('id', '!=', $place->id )->where('page_id', $place->page_id)->orderBy('id', 'decs')->get()->take(5);
-        return view('pages.place', compact(['place', 'places']));
+        if ($place) {
+            $place->view = $place->view + 1 ;
+            $place->save();
+            $places = places::where('id', '!=', $place->id )->where('page_id', $place->page_id)->orderBy('id', 'decs')->get()->take(5);
+            return view('pages.place', compact(['place', 'places']));
+        }
+        return view('errors.404');
     }
 
     public function search(Request $request)

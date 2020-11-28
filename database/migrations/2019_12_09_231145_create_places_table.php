@@ -17,6 +17,8 @@ class CreatePlacesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('title_ar');
+            $table->integer('sale')->default(0);
+            $table->integer('view')->default(0);
             $table->string('price_after_discount_ar');
             $table->string('price_after_discount');
             $table->string('price_ar');

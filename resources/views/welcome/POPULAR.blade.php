@@ -1,5 +1,5 @@
 @php
-    $places = App\places::orderBy('id', 'decs')->get()->take(5);
+    $places = App\places::orderBy('view', 'ascd')->take(5)->get();
 @endphp
 
 @if ($places->count() > 0)
@@ -7,7 +7,7 @@
   <div class="product">
     <div class="container">
       <div class="title-section mb-5 @if (App::isLocale('ar'))  text-right  @endif">
-        <h2 class="text-uppercase">@lang('Latest Products')</h2>
+        <h2 class="text-uppercase">@lang('POPULAR PRODUCTS')</h2>
       </div>
       <div id="product-all-2" class="owl-carousel owl-theme">
         @foreach($places as $place)

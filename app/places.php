@@ -13,12 +13,14 @@ class places extends Model
     protected $fillable = [
         'title',
         'title_ar',
+        'sale',
         'price_after_discount_ar',
         'price_after_discount',
         'price_ar',
         'price',
         'desc',
         'desc_ar',
+        'view',
         'page_id'
     ];
 
@@ -27,6 +29,7 @@ class places extends Model
         $rules = [
             'title' => 'required|string|max:255',
             'title_ar' => 'required|string|max:255',
+            'sale' => 'required|numeric',
             'price_after_discount_ar' => 'required|string|max:255',
             'price_after_discount' => 'required|string|max:255',
             'price_ar' => 'required|string|max:255',
@@ -44,6 +47,7 @@ class places extends Model
         $rules = [
             'title' => 'required|string|max:255',
             'title_ar' => 'required|string|max:255',
+            'sale' => 'required|numeric',
             'price_after_discount_ar' => 'required|string|max:255',
             'price_after_discount' => 'required|string|max:255',
             'price_ar' => 'required|string|max:255',
@@ -68,6 +72,7 @@ class places extends Model
         $credentials = [
             'title' => $request->title,
             'title_ar' => $request->title_ar,
+            'sale' => $request->sale,
             'price_after_discount_ar' => $request->price_after_discount_ar,
             'price_after_discount' => $request->price_after_discount,
             'price_ar' => $request->price_ar,
@@ -86,7 +91,7 @@ class places extends Model
     }
 
 
-   
+
 
     public static function files($files, $id)
     {
