@@ -1,39 +1,23 @@
-# Env
-/.env
-/.composer.lock
-/error_log
-/frontend/web/error_log
-/backend/web/error_log
-/googlea3057eb8d5420e8a.html
-/__MACOSX
-/.ftpquota
-/.idea
-/.vscode
-# Mac DS_Store Files
-.DS_Store
-composer.lock
-# Vagrant
-/.vagrant
-/node_modules
-/backend/node_modules
-/bower_components
-.git-old
-/html-emails/build/
-/docs
-/docker
-
-/googleb204fc1772c310bb.html
-/abc.html
-/old
-/old.zip
-/setup.php
-blog/
-gathern-backup-12-2-2017.zip
-composer.lock
-/ignore-me
-mix-manifest.json
+/vendor/
+node_modules/
 npm-debug.log
-frontend/config/assets-prod.php
-vendor/
-bin/
-/storage/web/**
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
