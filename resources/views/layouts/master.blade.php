@@ -146,7 +146,7 @@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-address-book" ></i>
-                            <span>About Us</span>
+                            <span>Brands</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -154,7 +154,13 @@
                         <ul class="treeview-menu">
 
                             <li>
-                                <a href="{{ url('/siteAdmin/about_us/show') }}">
+                                <a href="{{ url('/siteAdmin/brand/add') }}">
+                                    <i class="fa fa-circle-o"></i>
+                                    Add
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/siteAdmin/brand/show') }}">
                                     <i class="fa fa-circle-o"></i>
                                     Show / Edit
                                 </a>

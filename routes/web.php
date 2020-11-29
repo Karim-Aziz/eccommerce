@@ -58,6 +58,12 @@ Route::group(['prefix' => '/siteAdmin'], function () {
         Route::post('/insert', 'siteAdmin\SliderController@insert');
         Route::post('/edit/{id}', 'siteAdmin\SliderController@edit');
     });
+    Route::group([  'prefix'=>'/brand'],function(){
+        Route::get('/show', 'siteAdmin\BrandController@index');
+        Route::get('/add', 'siteAdmin\BrandController@add');
+        Route::post('/insert', 'siteAdmin\BrandController@insert');
+        Route::post('/edit/{id}', 'siteAdmin\BrandController@edit');
+    });
     Route::group([  'prefix'=>'/services'],function(){
         Route::get('/show', 'siteAdmin\ServicesController@index');
         Route::get('/add', 'siteAdmin\ServicesController@add');

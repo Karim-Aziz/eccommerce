@@ -60,6 +60,7 @@
   @include('welcome.items')
   @include('welcome.POPULAR')
   @include('welcome.latest')
+  @include('welcome.brand')
 
 
   @include('welcome.footer')
