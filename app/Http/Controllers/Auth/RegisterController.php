@@ -49,6 +49,7 @@ class RegisterController extends Controller
     {
         $array = [
             'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'img' => 'required|image|mimes:jpg,jpeg,gif,png,WebP',
@@ -66,6 +67,7 @@ class RegisterController extends Controller
     {
         $array = [
             'name' => $data['name'],
+            'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ];

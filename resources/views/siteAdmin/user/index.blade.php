@@ -37,7 +37,7 @@
 
                                         <div class="modal-body">
                                         <form role="form" action="{{url('/siteAdmin/user/edit/'.$user->id)}}" method="post" enctype="multipart/form-data">
-                                            
+
                                             {{ csrf_field() }}
                                             <div class="box-body">
                                                 <div class="form-group">
@@ -47,6 +47,16 @@
                                                         @if ($errors->has('name'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('name') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>phone</label>
+                                                    <input name="phone" type="text" class="form-control"
+                                                        value="{{old('phone')? old('phone'): $user->phone}}">
+                                                        @if ($errors->has('phone'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('phone') }}</strong>
                                                         </span>
                                                         @endif
                                                 </div>
@@ -70,7 +80,7 @@
                                                         </span>
                                                         @endif
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label>Photo</label>
                                                     <img style="height: 100px;border-radius: 50%"
@@ -95,7 +105,7 @@
                                                     </div>
 
                                                 </div>
-                                                
+
                                                 <div class="box-footer">
                                                     <input type="submit" value="update" class="btn btn-primary" >
                                                 </div>
@@ -117,7 +127,7 @@
                     @endif
 
                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                        
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
@@ -129,17 +139,17 @@
                                                 colspan="1"  aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending">Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                colspan="1" 
+                                                colspan="1"
                                                 aria-label="E-Mail: activate to sort column ascending">E-Mail</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                colspan="1" 
+                                                colspan="1"
                                                 aria-label="Phone: activate to sort column ascending">Role</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                     colspan="1" aria-label="Date: activate to sort column ascending">
                                                     Date
                                                 </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                colspan="1" 
+                                                colspan="1"
                                                 aria-label="Actions: activate to sort column ascending">Actions</th>
                                         </tr>
                                     </thead>
@@ -152,7 +162,7 @@
                                             <td>
                                                 @if ($user->role == 1)
                                                     Admin
-                                                @else 
+                                                @else
                                                     User
                                                 @endif
                                             </td>
@@ -175,7 +185,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <!-- /.box-body -->

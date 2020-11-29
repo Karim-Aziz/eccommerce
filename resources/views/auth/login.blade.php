@@ -61,7 +61,6 @@ Session::put(App::setLocale('en'));
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <label for="password" >@lang('Password')</label>
                     <input id="password" type="password" class="form-control" name="password" required>
@@ -106,6 +105,16 @@ Session::put(App::setLocale('en'));
                     @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>@lang('phone')</label>
+                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}"  required>
+
+                    @if ($errors->has('phone'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('phone') }}</strong>
                     </span>
                     @endif
                 </div>

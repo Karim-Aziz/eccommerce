@@ -34,6 +34,7 @@ Route::get('/our_team', 'ourTeamController@index');
 Route::get('/services', 'servicesController@index');
 Route::get('/about_us', 'AboutAsController@index');
 Route::get('/my_acount', 'HomeController@acount');
+Route::post('/user/edit/{id}', 'HomeController@editAcount');
 
 
 Auth::routes();

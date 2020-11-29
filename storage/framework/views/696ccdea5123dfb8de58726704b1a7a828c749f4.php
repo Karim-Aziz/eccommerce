@@ -62,7 +62,6 @@ Session::put(App::setLocale('en'));
                     </span>
                     <?php endif; ?>
                 </div>
-
                 <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                     <label for="password" ><?php echo app('translator')->getFromJson('Password'); ?></label>
                     <input id="password" type="password" class="form-control" name="password" required>
@@ -108,6 +107,16 @@ Session::put(App::setLocale('en'));
                     <?php if($errors->has('email')): ?>
                     <span class="help-block">
                         <strong><?php echo e($errors->first('email')); ?></strong>
+                    </span>
+                    <?php endif; ?>
+                </div>
+                <div class="form-group">
+                    <label><?php echo app('translator')->getFromJson('phone'); ?></label>
+                    <input id="phone" type="text" class="form-control" name="phone" value="<?php echo e(old('phone')); ?>"  required>
+
+                    <?php if($errors->has('phone')): ?>
+                    <span class="help-block">
+                        <strong><?php echo e($errors->first('phone')); ?></strong>
                     </span>
                     <?php endif; ?>
                 </div>

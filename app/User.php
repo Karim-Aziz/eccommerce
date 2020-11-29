@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Image;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'image_id', 'role'
+        'name', 'email', 'password', 'image_id', 'role', 'phone'
     ];
 
     /**
@@ -32,6 +33,7 @@ class User extends Authenticatable
     {
         $rules = [
             'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'role' => 'required|numeric',
@@ -43,11 +45,19 @@ class User extends Authenticatable
     {
         $rules = [
             'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'. $id,
-            'role' => 'required|numeric',
-
             'password' => 'nullable|string|min:6'
         ];
+        if ($request->role != null) {
+            $user = Auth::user();
+            if ($user && $user->role == 1) {
+                $rules+=[
+                    'role' => 'required|numeric'
+                ];
+            }
+        }
+
         return $rules;
     }
 
@@ -57,8 +67,16 @@ class User extends Authenticatable
         $credentials = [
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
+            'phone' => $request->phone,
         ];
+        if ($request->role != null) {
+            $user = Auth::user();
+            if ($user && $user->role == 1) {
+                $credentials+=[
+                    'role' => $request->role
+                ];
+            }
+        }
         if ($request->password != null) {
             $credentials+=[
                 'password' => bcrypt($request->password)

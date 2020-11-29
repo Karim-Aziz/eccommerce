@@ -37,6 +37,16 @@
                             @endif
                         </div>
                         <div class="form-group">
+                            <label>phone</label>
+                            <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+
+                            @if ($errors->has('phone'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('phone') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
                             <label>E-Mail</label>
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  required>
 
@@ -56,7 +66,7 @@
                             </span>
                             @endif
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Photo</label>
                             <input name="img" class="form-control" type="file">
