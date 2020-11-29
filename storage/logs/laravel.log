@@ -3418,3 +3418,16 @@ Did you mean one of these?
 #58 /home/mohamedelshazly/Documents/eccommerce/server.php(21): require_once('/home/mohamedel...')
 #59 {main}
 "} 
+[2020-11-29 07:50:39] local.ERROR: Uncaught Error: Call to undefined method App\Http\Kernel::getMiddlewareGroups() in Command line code:1
+Stack trace:
+#0 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Uncaught Error: Call to undefined method App\\Http\\Kernel::getMiddlewareGroups() in Command line code:1
+Stack trace:
+#0 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 /home/mohamedelshazly/Documents/eccommerce/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(137): Symfony\\Component\\Debug\\Exception\\FatalErrorException->__construct()
+#1 /home/mohamedelshazly/Documents/eccommerce/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(123): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalExceptionFromError()
+#2 /home/mohamedelshazly/Documents/eccommerce/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 {main}
+"} 

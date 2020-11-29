@@ -12,15 +12,13 @@ Session::put(App::setLocale('en'));
 <!-- ================= Start My Acount ================= -->
     <div class="my_acount">
       <div class="container">
-        <h1 class="mt-5 text-center">My Acount</h1>
+        <h1 class="mt-5 text-center">@lang('My Account')</h1>
         <div class="logoContainer">
-          <img
-            src="http://img1.wikia.nocookie.net/__cb20130901213905/battlebears/images/9/98/Team-icon-placeholder.png"
-          />
+          <img style="height: 100px;border-radius: 50%" src="{{ @$user->image->name ? '/img/users/'.$user->image->name : url('/dist/img/user2-160x160.jpg')}}">
         </div>
         <div class="fileContainer sprite">
-          <span>choose file</span>
-          <input type="file" value="Choose File" />
+          <span>@lang('choose image')</span>
+          <input type="file" value="Choose File" name="img"/>
         </div>
         <form>
           <div class="form-group">
