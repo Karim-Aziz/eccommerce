@@ -33,6 +33,7 @@ Route::post('/requests/{id}', 'pagesController@requests');
 Route::get('/our_team', 'ourTeamController@index');
 Route::get('/services', 'servicesController@index');
 Route::get('/about_us', 'AboutAsController@index');
+Route::get('/my_acount', 'HomeController@acount');
 
 
 Auth::routes();
@@ -40,6 +41,7 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::group(['prefix' => '/siteAdmin'], function () {
     Route::get('/', 'siteAdmin\AdminController@index');
+    Route::get('/login', 'Auth\LoginController@loginAdmin');
     Route::group([  'prefix'=>'/user'],function(){
         Route::get('/show', 'siteAdmin\UserController@index');
         Route::get('/add', 'siteAdmin\UserController@add');

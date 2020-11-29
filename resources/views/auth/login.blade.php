@@ -1,127 +1,57 @@
-<!doctype html>
-<html>
+@php
+if (Session::get('app_locale') == 'ar') {
+App::setLocale('ar');
+} else {
+App::setLocale('en');
+Session::put(App::setLocale('en'));
+}
+@endphp
+@extends('layouts.app')
+@section('title') Login @endsection
+@section('content')
+<div class="container">
+<div class="login @if (App::isLocale('ar'))  text-right  @endif">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+        <a
+            class="nav-link active"
+            id="pills-home-tab"
+            data-toggle="pill"
+            href="#login"
+            role="tab"
+            aria-controls="pills-home"
+            aria-selected="true"
+            >@lang('Login') </a
+        >
+        </li>
+        <li class="nav-item">
+        <a
+            class="nav-link"
+            id="pills-profile-tab"
+            data-toggle="pill"
+            href="#register"
+            role="tab"
+            aria-controls="pills-profile"
+            aria-selected="false"
+            >@lang('Create Account')
+        </a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div
+        class="tab-pane fade show active"
+        id="login"
+        role="tabpanel"
+        aria-labelledby="pills-home-tab"
+        >
+        <div class="row">
+            <div class="col-md-12">
+            <!-- Start Form Login -->
+            <form class="custom-form" method="POST" action="{{ route('login') }}">
+                {{ csrf_field() }}
 
-<head>
-    <meta charset="utf-8">
-    <title>Login Form</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family: "Roboto Condensed", sans-serif;
-        }
-        label {
-            color: #fff;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            background: url("{{ url('/img/bg.jpg') }}");
-            background-size: cover;
-        }
-
-        .loginBox {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 350px;
-            height: 420px;
-            padding: 80px 40px;
-            box-sizing: border-box;
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .user {
-            width: 100px;
-            height: 100px;
-            overflow: hidden;
-            position: absolute;
-            top: calc(-100px / 2);
-            left: calc(50% - 50px);
-        }
-
-        h2 {
-            margin: 0;
-            padding: 0 0 20px;
-            color: #ab854f;
-            text-align: center;
-        }
-
-        .loginBox p {
-            margin: 0;
-            padding: 0;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .loginBox input {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .loginBox input[type="email"],
-        .loginBox input[type="password"] {
-            border: none;
-            border-bottom: 1px solid #fff;
-            background: transparent;
-            outline: none;
-            height: 40px;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        ::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .loginBox input[type="submit"] {
-            border: none;
-            outline: none;
-            height: 40px;
-            color: #fff;
-            font-size: 16px;
-            background: #ab854f;
-            cursor: pointer;
-            border-radius: 20px;
-        }
-
-        .loginBox input[type="submit"]:hover {
-            background: #efed40;
-            color: #262626;
-        }
-
-        .loginBox a {
-            color: #fff;
-            font-size: 14px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .custom-a {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .help-bloc{
-            color: red;
-        }
-        .custom-a :hover {
-            color: #efed40;
-        }
-    </style>
-
-</head>
-
-<body>
-    <div class="loginBox">
-    <img src="{{ url('/img/user.png') }}" class="user">
-        <h2>Log In Here</h2>
-        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-            {{ csrf_field() }}
-
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                <div class="col-md-6">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="email" >@lang('Email Address')</label>
                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required
                         autofocus>
 
@@ -131,12 +61,9 @@
                     </span>
                     @endif
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                <label for="password" class="col-md-4 control-label">Password</label>
-
-                <div class="col-md-6">
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <label for="password" >@lang('Password')</label>
                     <input id="password" type="password" class="form-control" name="password" required>
 
                     @if ($errors->has('password'))
@@ -145,20 +72,71 @@
                     </span>
                     @endif
                 </div>
+                <button type="submit" class="btn-block">@lang('Sign In')</button>
+            </form>
+            <!-- End Form Login -->
             </div>
-
-            <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
-                    <input type="submit" name="" value="Sign In">
-                </div>
-            </div>
-
-        </form>
-        <div class="custom-a">
-            <a href="https://vudigitalsolution.com/">Designed by vudigitalsolution</a>
         </div>
+        </div>
+        <div
+        class="tab-pane fade"
+        id="register"
+        role="tabpanel"
+        aria-labelledby="pills-profile-tab"
+        >
+        <div class="row">
+            <div class="col-md-12">
+            <!-- Start Form Login -->
+            <form role="form" action="{{ route('register') }}" method="post" enctype="multipart/form-data" class="custom-form">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label>@lang('full name')</label>
+                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
+                    @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>@lang('Email Address')</label>
+                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  required>
+
+                    @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>@lang('Password')</label>
+                    <input id="password" type="password" class="form-control" name="password" required>
+
+                    @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label>@lang('Personal Photo')</label>
+                    <input name="img" class="form-control" type="file">
+                    <span class="help-block">
+                        <strong>{{ $errors->first('img') }}</strong>
+                    </span>
+                </div>
+                <button type="submit" class="btn-block">
+                    @lang('Create Account')
+                </button>
+            </form>
+            <!-- End Form Login -->
+            </div>
+        </div>
+        </div>
     </div>
-</body>
+</div>
+</div>
+@endsection
 
-</html>

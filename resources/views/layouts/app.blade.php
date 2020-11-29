@@ -60,12 +60,18 @@
           <div class="row">
             <div class="col-md-10 @if (App::isLocale('ar'))  text-right  @endif">
               <div class="other-link">
-                @if (Auth::check())
+                 @if (Auth::check())
                   <a href="{{ url('/my_acount') }}">@lang('My Account')</a>
+                  <span>|</span>
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                      @lang('Logout')
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                  </form>
                 @else
-                  <a href="{{ url('/register') }}">@lang('Login')</a>
+                  <a href="{{ url('/login') }}">@lang('Login')</a>
                 @endif
-
                 <span>|</span>
                 <a href="{{ url('/cart') }}" >
                 @lang('My Cart') <i class="fas fa-shopping-cart"></i>

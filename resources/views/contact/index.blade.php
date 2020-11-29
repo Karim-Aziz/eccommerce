@@ -91,75 +91,10 @@ Session::put(App::setLocale('en'));
             </div>
           </div>
         </div>
-
-        <!-- Start Map -->
-        <div class="map mt-5">
-          <div class="heading-main">
-            <h4 class="text-uppercase">
-              <i class="fas fa-search-location"></i> @lang('My Locatins')
-            </h4>
-          </div>
-          <div style="width: 100%">
-            <iframe
-              width="100%"
-              height="600"
-              frameborder="0"
-              scrolling="no"
-              marginheight="0"
-              marginwidth="0"
-              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=El%20Sudan%20st%20Cairo,%20Cairo%20Governorate,%20Egypt%2013611+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-            ></iframe
-            ><a href="https://www.maps.ie/route-planner.htm">Journey Planner</a>
-          </div>
-        </div>
       </div>
     </div>
     <!-- =========== End Contact Page =========== -->
 
-    <!-- =========== Start All Clinic  =========== -->
-    <div class="all-clinic @if (App::isLocale('ar'))  text-right  @endif">
-      <div class="container">
-        <div class="heading-main text-center mb-5">
-          <h1 class="text-uppercase">@lang('All Clinics')</h1>
-        </div>
-        <div class="row" data-aos="zoom-in" data-aos-duration="1500">
-          @if (count($Clinics) > 0)
-            @foreach (@$Clinics as $Clinic)
-              @if (App::isLocale('ar'))
-                <div class="col-lg-4">
-                  <div class="clinic-info">
-                    <h5 class="text-center">{{ $Clinic->title_ar }}</h5>
-                    <ul class="list-group">
-                      <li>
-                        <i class="far fa-calendar-check"></i> {{ $Clinic->time_ar }}
-                      </li>
-                      <li><i class="fas fa-phone-alt"></i>  {{ $Clinic->phone }}</li>
-                      <li><i class="fas fa-location-arrow"></i>  {{ $Clinic->address_ar }}</li>
-                    </ul>
-                  </div>
-                </div>
-              @else
-                <div class="col-lg-4">
-                  <div class="clinic-info">
-                    <h5 class="text-center">{{ $Clinic->title }}</h5>
-                    <ul class="list-group">
-                      <li>
-                        <i class="far fa-calendar-check"></i> {{ $Clinic->time }}
-                      </li>
-                      <li><i class="fas fa-phone-alt"></i>  {{ $Clinic->phone }}</li>
-                      <li><i class="fas fa-location-arrow"></i>  {{ $Clinic->address }}</li>
-                    </ul>
-                  </div>
-                </div>
-              @endif
-            @endforeach
-          @endif
-
-
-
-        </div>
-      </div>
-    </div>
 
 
   @endsection

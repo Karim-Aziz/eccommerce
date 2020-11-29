@@ -35,7 +35,6 @@ class User extends Authenticatable
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'role' => 'required|numeric',
-            
         ];
         return $rules;
     }
@@ -46,15 +45,15 @@ class User extends Authenticatable
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'. $id,
             'role' => 'required|numeric',
-            
+
             'password' => 'nullable|string|min:6'
-        ]; 
+        ];
         return $rules;
     }
 
     public static function credentials($request)
     {
-        
+
         $credentials = [
             'name' => $request->name,
             'email' => $request->email,
@@ -71,11 +70,11 @@ class User extends Authenticatable
         return $credentials;
     }
 
-    
+
 
     public static function file($file)
     {
-        
+
         $extension = $file->getClientOriginalExtension();
         $fileName = time() . rand(11111, 99999) . '.' . $extension;
         $destinationPath = public_path() . '/img/users/';
