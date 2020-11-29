@@ -19,10 +19,8 @@ class CreatePlacesTable extends Migration
             $table->string('title_ar');
             $table->integer('sale')->default(0);
             $table->integer('view')->default(0);
-            $table->string('price_after_discount_ar');
-            $table->string('price_after_discount');
-            $table->string('price_ar');
-            $table->string('price');
+            $table->integer('price_after_discount')->nullable();
+            $table->integer('price');
             $table->text('desc');
             $table->text('desc_ar');
             $table->integer('page_id')->nullable()->unsigned();

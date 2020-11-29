@@ -51,19 +51,11 @@
               </h4>
               @if (@$place->sale)
                 <span class="text-secondary sale">
-                  @if (App::isLocale('ar'))
-                    {{ @$place->price_after_discount_ar }}
-                  @else
-                    {{ @$place->price_after_discount }}
-                  @endif
+                  {{ @$place->price_after_discount }} @if (App::isLocale('ar')) جنية @else EL @endif
                 </span>
               @endif
               <span class="text-secondary">
-                @if (App::isLocale('ar'))
-                  {{ @$place->price_ar }}
-                @else
-                  {{ @$place->price }}
-                @endif
+                {{ @$place->price }} @if (App::isLocale('ar')) جنية @else EL @endif
               </span>
             </div>
           </div>

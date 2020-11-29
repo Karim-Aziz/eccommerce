@@ -63,18 +63,10 @@
               </h5>
               <b>
                 <span>
-                  @if (App::isLocale('ar'))
-                    {{ @$place->price_after_discount_ar }}
-                  @else
-                    {{ @$place->price_after_discount }}
-                  @endif
+                  {{ @$place->price_after_discount }} @if (App::isLocale('ar')) جنية @else EL @endif
                 </span>
                 <span class="sale">
-                  @if (App::isLocale('ar'))
-                    {{ @$place->price_ar }}
-                  @else
-                    {{ @$place->price }}
-                  @endif
+                  {{ @$place->price }} @if (App::isLocale('ar')) جنية @else EL @endif
                 </span>
               </b>
               <p class="mt-4">
