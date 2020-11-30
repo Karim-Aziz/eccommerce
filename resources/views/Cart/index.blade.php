@@ -96,7 +96,7 @@ Session::put(App::setLocale('en'));
                         {{ App\Cart::Amount() }}
                     </td>
                     <td >
-                        <a href="/checkout" class="btn btn-success btn-block">@lang('Checkout')</a>
+                        <a href="{{url('/order/checkout')}}" class="btn btn-success btn-block">@lang('Checkout')</a>
                     </td>
                 </tr>
             </tbody>

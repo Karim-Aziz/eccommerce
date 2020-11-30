@@ -24,6 +24,10 @@ Route::group([  'prefix'=>'/favorite'], function () {
     Route::post('/add/{id}', 'FavoriteController@add');
     Route::post('/remove/{id}', 'FavoriteController@remove');
 });
+Route::group([  'prefix'=>'/order'], function () {
+    Route::get('/', 'OrderController@index');
+    Route::get('/checkout', 'OrderController@checkout');
+});
 Route::group([  'prefix'=>'/cart'], function () {
     Route::get('/', 'CartController@index');
     Route::post('/add/{id}', 'CartController@add');

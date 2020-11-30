@@ -114,4 +114,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\places', 'carts', 'user_id', 'place_id');
     }
+    public function Orders()
+    {
+        return $this->hasMany('App\Order', 'id', 'user_id');
+    }
 }
