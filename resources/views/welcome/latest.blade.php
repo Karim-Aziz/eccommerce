@@ -36,20 +36,12 @@
                 <a href="{{ url('/pages/place/'.$place->id)}}"><i class="fas fa-eye"></i></a>
               </button>
 
-              <button
-                type="button"
-                class="btn btn-secondary"
-                title="Add To Wishlist"
-              >
+              <button type="button" class="btn btn-secondary" title="Add To Wishlist" >
                 <a href="{{ url('/favorite') }}" class="favorite" data-id="{{@$place->id}}"><i class="fas fa-heart"></i></a>
               </button>
 
-              <button
-                type="button"
-                class="btn btn-secondary"
-                title="Add To Cart"
-              >
-                <a href="cart.html"><i class="fas fa-cart-arrow-down"></i></a>
+              <button type="button" class="btn btn-secondary" title="Add To Cart" >
+                <a href="{{ url('/cart') }}" class="cart-icon" data-id="{{@$place->id}}"><i class="fas fa-cart-arrow-down"></i></a>
               </button>
             </div>
           </div>

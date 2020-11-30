@@ -7,26 +7,28 @@ Session::put(App::setLocale('en'));
 }
 @endphp
 @extends('layouts.app')
-@section('title','My Favorite')
+@section('title','My Cart')
 @section('content')
 <!-- ================= Start Cart ================= -->
 <div class="cart @if (App::isLocale('ar'))  text-right  @endif">
     <div class="container">
     <div class="title-section mb-5">
-        <h2 class="text-uppercase">@lang('My Favorite')</h2>
+        <h2 class="text-uppercase">@lang('My Cart')</h2>
     </div>
-    @if ($userFavorites->count() > 0)
+    @if ($userCarts->count() > 0)
         <table class="table text-center">
             <thead>
             <tr>
                 <th scope="col">@lang('image')</th>
                 <th scope="col">@lang('Product')</th>
                 <th scope="col">@lang('Price')</th>
+                <th scope="col">@lang('Quantity')</th>
+                <th scope="col">@lang('Total')</th>
                 <th scope="col">@lang('Remove')</th>
             </tr>
             </thead>
             <tbody>
-                @foreach ($userFavorites as $place)
+                @foreach ($userCarts as $place)
                     <tr id="{{$place->id}}">
                         <td class="cart-img clickable-row" data-href="{{ url('/pages/place/'.$place->id)}}">
                         @php
@@ -59,10 +61,44 @@ Session::put(App::setLocale('en'));
                             </span>
                         </td>
                         <td>
+                            <div class="box">
+                            <input readonly id="spinner-{{$place->id}}" class="spinner-change" value="{{$place->quantity}}" data-id="{{@$place->id}}" />
+                            </div>
+                        </td>
+                        <td id="total-{{$place->id}}">
+                            @if (@$place->sale)
+                                {{ @$place->price_after_discount * @$place->quantity  }}
+                            @else
+                                {{ @$place->price * @$place->quantity  }}
+                            @endif
+                            @if (App::isLocale('ar')) جنية @else EL @endif
+                        </td>
+
+                        <td>
                             <a href="{{ url('/remove') }}" class="remove" data-id="{{@$place->id}}"><i class="far fa-times-circle"></i></a>
                         </td>
                     </tr>
                 @endforeach
+                <tr>
+                    <th>
+                        @lang('Amount')
+                    </th>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                    <td id="amount">
+                        {{ App\Cart::Amount() }}
+                    </td>
+                    <td >
+                        <a href="/checkout" class="btn btn-success btn-block">@lang('Checkout')</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     @else
@@ -110,6 +146,77 @@ Session::put(App::setLocale('en'));
 @endsection
 @section('js')
   <script>
+      $(function () {
+        $(".spinner-change").spinner({
+            spin: function (event, ui) {
+                var keepPlus =  $(this) ;
+                var id = $(this).attr("data-id");
+                if (ui.value > 1) {
+                    var request = $.ajax({
+                    url: "/cart/plus/"+id,
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "value" :  ui.value,
+                    },
+                    dataType: 'json',
+                    });
+                    request.done(function(msg) {
+                        $.ajax({
+                        url: "/cart/total/"+id,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: 'json'
+                        }).done(function(data) {
+                            $('#total-'+id).html(data.message);
+                        });
+                        $.ajax({
+                        url: "/cart/amount",
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: 'json'
+                        }).done(function(data) {
+                            $('#amount').html(data.message);
+                        });
+                        alert( msg.message );
+                    });
+                    request.fail(function(jqXHR, textStatus) {
+                    alert( "Request failed: " + textStatus );
+                    });
+                } else if (ui.value < 1 ) {
+                    var request = $.ajax({
+                    url: "/cart/remove/"+id,
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                    });
+                    request.done(function(msg) {
+                        $.ajax({
+                        url: "/cart/amount",
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: 'json'
+                        }).done(function(data) {
+                            $('#amount').html(data.message);
+                        });
+                        $('#'+id).remove();
+                        alert( msg.message );
+                    });
+                    request.fail(function(jqXHR, textStatus) {
+                    alert( "Request failed: " + textStatus );
+                    });
+                }
+            },
+        });
+    });
     $(document).ready(function () {
         $(document).on({
             ajaxStart: function(){
@@ -124,24 +231,31 @@ Session::put(App::setLocale('en'));
         $(".clickable-row").click(function() {
             window.location = $(this).data("href");
         });
-
         $('.remove').on('click', function (e) {
             e.preventDefault();
             var id = $(this).attr("data-id");
             var request = $.ajax({
-            url: "/favorite/remove/"+id,
+            url: "/cart/remove/"+id,
             type: "POST",
             data: {
                 "_token": "{{ csrf_token() }}"
             },
             dataType: 'json',
             });
-
             request.done(function(msg) {
                 //alert( msg.message );
                 $('#'+id).remove();
+                $.ajax({
+                    url: "/cart/amount",
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: 'json'
+                    }).done(function(data) {
+                        $('#amount').html(data.message);
+                    });
             });
-
             request.fail(function(jqXHR, textStatus) {
             alert( "Request failed: " + textStatus );
             });

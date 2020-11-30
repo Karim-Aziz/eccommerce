@@ -49,7 +49,7 @@
                 class="btn btn-secondary"
                 title="Add To Cart"
               >
-                <a href="#"><i class="fas fa-cart-arrow-down"></i></a>
+                <a href="<?php echo e(url('/cart')); ?>" class="cart-icon" data-id="<?php echo e(@$place->id); ?>"><i class="fas fa-cart-arrow-down"></i></a>
               </button>
             </div>
           </div>
@@ -89,6 +89,7 @@
   </div>
 <!--  ======================= End  Latest Products =============================  -->
 <div class="overlay-load"></div>
+
 <?php endif; ?>
 <style>
     .clickable-row{
@@ -124,12 +125,9 @@
             $("body").addClass("loading");
         },
         ajaxStop: function(){
-          /*
-            setTimeout(function () {
-                $("body").removeClass("loading");
-            },1000);
-            */
-            $("body").removeClass("loading");
+          setTimeout(function () {
+              $("body").removeClass("loading");
+          }, 1000);
         }
     });
     $(document).ready(function () {
@@ -138,6 +136,26 @@
         var id = $(this).attr("data-id");
         var request = $.ajax({
           url: "/favorite/add/"+id,
+          type: "POST",
+          data: {
+            "_token": "<?php echo e(csrf_token()); ?>"
+          },
+          dataType: 'json',
+        });
+
+        request.done(function(msg) {
+          alert( msg.message );
+        });
+
+        request.fail(function(jqXHR, textStatus) {
+          alert( "Request failed: " + textStatus );
+        });
+      });
+      $('.cart-icon').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        var request = $.ajax({
+          url: "/cart/add/"+id,
           type: "POST",
           data: {
             "_token": "<?php echo e(csrf_token()); ?>"

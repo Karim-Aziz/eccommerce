@@ -49,7 +49,7 @@
                 class="btn btn-secondary"
                 title="Add To Cart"
               >
-                <a href="#"><i class="fas fa-cart-arrow-down"></i></a>
+                <a href="{{ url('/cart') }}" class="cart-icon" data-id="{{@$place->id}}"><i class="fas fa-cart-arrow-down"></i></a>
               </button>
             </div>
           </div>
@@ -87,6 +87,28 @@
   </div>
 <!--  ======================= End  Latest Products =============================  -->
 <div class="overlay-load"></div>
+{{--
+<div class="container alert alert-dismissible fade show">
+    <div class="row mt-4">
+        <div class="col">
+            <div class="media bg-warning">
+                <i class="fa fa-user-circle align-self-center m-4" style="font-size: 3rem;" aria-hidden="true"></i>
+                <div class="media-body bg-light p-4">
+                   <div class="row">
+                       <div class="col">
+                           <h5 class="mt-0">Media object heading</h5>
+                       </div>
+                       <div class="col-1 text-right">
+                           <button type="button" class="close" data-dismiss="alert">&times;</button>
+                       </div>
+                   </div>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+--}}
 @endif
 <style>
     .clickable-row{
@@ -122,12 +144,9 @@
             $("body").addClass("loading");
         },
         ajaxStop: function(){
-          /*
-            setTimeout(function () {
-                $("body").removeClass("loading");
-            },1000);
-            */
-            $("body").removeClass("loading");
+          setTimeout(function () {
+              $("body").removeClass("loading");
+          }, 1000);
         }
     });
     $(document).ready(function () {
@@ -136,6 +155,26 @@
         var id = $(this).attr("data-id");
         var request = $.ajax({
           url: "/favorite/add/"+id,
+          type: "POST",
+          data: {
+            "_token": "{{ csrf_token() }}"
+          },
+          dataType: 'json',
+        });
+
+        request.done(function(msg) {
+          alert( msg.message );
+        });
+
+        request.fail(function(jqXHR, textStatus) {
+          alert( "Request failed: " + textStatus );
+        });
+      });
+      $('.cart-icon').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        var request = $.ajax({
+          url: "/cart/add/"+id,
           type: "POST",
           data: {
             "_token": "{{ csrf_token() }}"

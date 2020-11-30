@@ -110,4 +110,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\places', 'favorites', 'user_id', 'place_id');
     }
+    public function Carts()
+    {
+        return $this->belongsToMany('App\places', 'carts', 'user_id', 'place_id');
+    }
 }

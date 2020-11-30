@@ -4,6 +4,7 @@ namespace App;
 
 use App\Image;
 use App\places_images;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class places extends Model
@@ -38,6 +39,13 @@ class places extends Model
         ];
         return $rules;
     }
+    
+    public function getQuantityAttribute()
+    {
+        $quantity = @Cart::where(['user_id' => Auth::id() , 'place_id' => $this->id])->first()->quantity;
+        return $quantity ? $quantity : 1;
+    }
+
     public static function rules_update($request)
     {
         $rules = [
