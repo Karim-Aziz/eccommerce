@@ -23,6 +23,8 @@
             </a>
             <span>|</span>
             <a href="{{ url('/order') }}">@lang('My Orders')</a>
+            <span>|</span>
+            <a href="{{ url('/favorite') }}">@lang('My Favorite')</a>
           </div>
         </div>
 
@@ -61,7 +63,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto">
           <li class="nav-item active">
-            <a class="nav-link active" href="{{ url('/') }}#">@lang('Home')</a>
+            <a class="nav-link active" href="{{ url('/') }}">@lang('Home')</a>
           </li>
           @if (count($pages) > 0)
             @foreach ($pages as $page)

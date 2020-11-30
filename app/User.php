@@ -105,4 +105,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Image', 'id', 'image_id');
     }
+
+    public function Favorites()
+    {
+        return $this->belongsToMany('App\places', 'favorites', 'user_id', 'place_id');
+    }
 }

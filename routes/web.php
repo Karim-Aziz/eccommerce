@@ -19,6 +19,11 @@ Route::group([  'prefix'=>'/contact'], function () {
     Route::get('/', 'contactControlle@index');
     Route::post('/insert', 'contactControlle@insert');
 });
+Route::group([  'prefix'=>'/favorite'], function () {
+    Route::get('/', 'FavoriteController@index');
+    Route::post('/add/{id}', 'FavoriteController@add');
+    Route::post('/remove/{id}', 'FavoriteController@remove');
+});
 
 Route::group([  'prefix'=>'/pages'], function () {
     Route::get('/', 'pagesController@index');

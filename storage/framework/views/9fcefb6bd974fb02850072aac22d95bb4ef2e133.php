@@ -79,6 +79,8 @@
                 </a>
                 <span>|</span>
                 <a href="<?php echo e(url('/order')); ?>"><?php echo app('translator')->getFromJson('My Orders'); ?></a>
+                <span>|</span>
+                <a href="<?php echo e(url('/favorite')); ?>"><?php echo app('translator')->getFromJson('My Favorite'); ?></a>
               </div>
             </div>
 
@@ -117,7 +119,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto">
               <li class="nav-item active">
-                <a class="nav-link active" href="<?php echo e(url('/')); ?>#"><?php echo app('translator')->getFromJson('Home'); ?></a>
+                <a class="nav-link active" href="<?php echo e(url('/')); ?>"><?php echo app('translator')->getFromJson('Home'); ?></a>
               </li>
               <?php if(count($pages) > 0): ?>
                 <?php $__currentLoopData = $pages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -224,5 +226,6 @@
     <?php else: ?>
     <script src="<?php echo e(url('/js/main.js')); ?>"></script>
     <?php endif; ?>
+    <?php echo $__env->yieldContent('js'); ?>
   </body>
 </html>

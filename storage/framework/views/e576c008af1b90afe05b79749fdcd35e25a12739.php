@@ -66,22 +66,10 @@
               </h5>
               <b>
                 <span>
-                  <?php if(App::isLocale('ar')): ?>
-                    <?php echo e(@$place->price_after_discount_ar); ?>
-
-                  <?php else: ?>
-                    <?php echo e(@$place->price_after_discount); ?>
-
-                  <?php endif; ?>
+                  <?php echo e(@$place->price_after_discount); ?> <?php if(App::isLocale('ar')): ?> جنية <?php else: ?> EL <?php endif; ?>
                 </span>
                 <span class="sale">
-                  <?php if(App::isLocale('ar')): ?>
-                    <?php echo e(@$place->price_ar); ?>
-
-                  <?php else: ?>
-                    <?php echo e(@$place->price); ?>
-
-                  <?php endif; ?>
+                  <?php echo e(@$place->price); ?> <?php if(App::isLocale('ar')): ?> جنية <?php else: ?> EL <?php endif; ?>
                 </span>
               </b>
               <p class="mt-4">

@@ -37,7 +37,7 @@
     <!-- Import Custom Styles AR File -->
     <link rel="stylesheet" href="<?php echo e(url('/css/style_ar.css')); ?>" />
   <?php endif; ?>
-  <?php echo $__env->yieldContent('css'); ?>
+
   <?php
       $home_desc = App\home_desc::first();
   ?>
@@ -46,6 +46,7 @@
       background: url("<?php echo e(@$home_desc->image ? '/img/home_desc/'.$home_desc->image : url('/img/bac-img.jpg')); ?>") no-repeat top center;
     }
   </style>
+  <?php echo $__env->yieldContent('css'); ?>
 </head>
 
 
@@ -85,5 +86,6 @@
     <?php else: ?>
     <script src="<?php echo e(url('/js/main.js')); ?>"></script>
     <?php endif; ?>
+    <?php echo $__env->yieldContent('js'); ?>
   </body>
 </html>

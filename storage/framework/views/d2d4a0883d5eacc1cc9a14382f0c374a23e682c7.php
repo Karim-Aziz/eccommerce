@@ -41,7 +41,7 @@
                 class="btn btn-secondary"
                 title="Add To Wishlist"
               >
-                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="<?php echo e(url('/favorite')); ?>" class="favorite" data-id="<?php echo e(@$place->id); ?>"><i class="fas fa-heart"></i></a>
               </button>
 
               <button

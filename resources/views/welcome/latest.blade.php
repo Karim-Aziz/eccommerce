@@ -41,7 +41,7 @@
                 class="btn btn-secondary"
                 title="Add To Wishlist"
               >
-                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="{{ url('/favorite') }}" class="favorite" data-id="{{@$place->id}}"><i class="fas fa-heart"></i></a>
               </button>
 
               <button

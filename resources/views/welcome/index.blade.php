@@ -37,7 +37,7 @@
     <!-- Import Custom Styles AR File -->
     <link rel="stylesheet" href="{{ url('/css/style_ar.css') }}" />
   @endif
-  @yield('css')
+
   @php
       $home_desc = App\home_desc::first();
   @endphp
@@ -46,6 +46,7 @@
       background: url("{{ @$home_desc->image ? '/img/home_desc/'.$home_desc->image : url('/img/bac-img.jpg')}}") no-repeat top center;
     }
   </style>
+  @yield('css')
 </head>
 
 
@@ -85,5 +86,6 @@
     @else
     <script src="{{ url('/js/main.js') }}"></script>
     @endif
+    @yield('js')
   </body>
 </html>
