@@ -149,6 +149,10 @@ Route::group(['prefix' => '/siteAdmin'], function () {
         Route::get('/', 'siteAdmin\requestsController@index');
         Route::get('/delete/{id}', 'siteAdmin\requestsController@delete');
     });
+    Route::group([  'prefix'=>'/orders'],function(){
+        Route::get('/', 'siteAdmin\OrdersController@index');
+        Route::get('/delete/{id}', 'siteAdmin\OrdersController@delete');
+    });
 });
 
 Route::get('/', function () {

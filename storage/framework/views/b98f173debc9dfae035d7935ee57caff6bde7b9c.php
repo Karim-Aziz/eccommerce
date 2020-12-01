@@ -232,9 +232,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/siteAdmin/requests">
+                        <a href="/siteAdmin/orders">
                             <i class="fa fa-tasks" aria-hidden="true"></i>
-                             <span>requests</span>
+                             <span>Orders</span>
                         </a>
                     </li>
                     <li>

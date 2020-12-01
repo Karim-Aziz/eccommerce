@@ -32,13 +32,13 @@
             <!-- small box -->
             <div class="small-box bg-fuchsia">
                 <div class="inner">
-                    <h3>{{App\requests::all()->count()}}</h3>
-                    <p>requests</p>
+                    <h3>{{App\Order::all()->count()}}</h3>
+                    <p>Orders</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-android-print"></i>
                 </div>
-                <a href="/siteAdmin/requests" class="small-box-footer">More info <i
+                <a href="/siteAdmin/orders" class="small-box-footer">More info <i
                         class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -46,13 +46,13 @@
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>{{App\services::all()->count()}}</h3>
+                    <h3>{{App\pages::all()->count()}}</h3>
                     <p>Categories</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-flash"></i>
                 </div>
-                <a href="/siteAdmin/services/show" class="small-box-footer">More info <i
+                <a href="/siteAdmin/pages/show" class="small-box-footer">More info <i
                         class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
