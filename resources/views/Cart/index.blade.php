@@ -96,7 +96,7 @@ Session::put(App::setLocale('en'));
                         {{ App\Cart::Amount() }}
                     </td>
                     <td >
-                        <a href="{{url('/order/checkout')}}" class="btn btn-success btn-block">@lang('Checkout')</a>
+                        <a href="{{url('/order/checkout')}}" class="btn btn-success btn-block checkout">@lang('Checkout')</a>
                     </td>
                 </tr>
             </tbody>
@@ -258,6 +258,24 @@ Session::put(App::setLocale('en'));
             });
             request.fail(function(jqXHR, textStatus) {
             alert( "Request failed: " + textStatus );
+            });
+        });
+        $('.checkout').on('click', function (e) {
+            e.preventDefault();
+            var request = $.ajax({
+            url: "/order/checkout",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}"
+            },
+            dataType: 'json',
+            });
+            request.done(function(msg) {
+                alert( msg.message );
+                window.location.href = "{{ url('/order')}}";
+            });
+            request.fail(function(jqXHR, textStatus) {
+                alert( "Request failed: " + textStatus );
             });
         });
     });

@@ -110,7 +110,7 @@ class CartController extends Controller
                 return ['success' => true, 'message' => $message];
             }
             if (Session::get('app_locale') == 'ar') {
-            $message = 'حدث خطأ';
+                $message = 'حدث خطأ';
             } else {
                 $message = 'error 404';
             }

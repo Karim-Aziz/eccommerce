@@ -11,204 +11,260 @@
 @section('title', @$place->name)
 @section('content')
 
-<style>
-    .background_section {
-      background: linear-gradient(rgb(0 0 0 / 65%), rgb(67 49 44)), url("{{ url('/images/details.jpg')}}");
-      height: 400px;
-      width: 100%;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-    }
-  </style>
-<!-- Start background image -->
-  <div class="background_section"></div>
+<!-- ================= Start background Product ================= -->
+    <div class="bac-img">
+      <img src="{{ url('/img/bac/1.jpg') }}" />
+    </div>
+    <!-- ================= End background Product ================= -->
 <!-- End background image -->
-<!-- Start Details Products -->
-    <div class="details_product @if (App::isLocale('ar'))  text-right  @endif ">
-      <div class="container">
-        @if(session()->has('success'))
-          <div class="row">
-            <div class="col-md-12">
-              <div class="alert alert-success">
-                {{ session()->get('success') }}
-              </div>
-            </div>
-          </div>
-        @endif
-        <div class="row">
-
-        @if ($place)
-          <div class="col-md-5">
-            <div class="slider_images">
-              <div class="owl-carousel owl-theme" id="details_product">
-              @foreach ( @$place->images as $image)
-                <div class="item">
-
-                  <img src="{{ @$image->name ? '/img/places_images/'.$image->name : url('/dist/img/user2-160x160.jpg')}}" alt="{{@$place->name}}" />
-                </div>
-              @endforeach
-              </div>
-            </div>
-          </div>
-          <div class="col-md-7">
-
-            <div class="det_info">
-              <h5 class="mb-4 mt-4">
-                @if (App::isLocale('ar'))
-                  {{ @$place->title_ar }}
-                @else
-                  {{ @$place->title }}
-                @endif
-              </h5>
-              <b>
-                <span>
-                  {{ @$place->price_after_discount }} @if (App::isLocale('ar')) جنية @else EL @endif
-                </span>
-                <span class="sale">
-                  {{ @$place->price }} @if (App::isLocale('ar')) جنية @else EL @endif
-                </span>
-              </b>
-              <p class="mt-4">
-                @if (App::isLocale('ar'))
-                  {!! @$place->desc_ar !!}
-                @else
-                  {!! @$place->desc !!}
-                @endif
-              </p>
-              <div class='info-buttons'>
-                <a class="back" href="{{ url('/')}}">@lang('Back To Home')</a>
-                <!-- Start Butom Order -->
-                <!-- Button trigger modal -->
-                <button
-                  class="order_mod"
-                  type="button"
-                  data-toggle="modal"
-                  data-target="#staticBackdrop"
-                >
-                  @lang('Add Your Ordar')
-                </button>
-              </div>
-              <!-- Modal -->
-              <div
-                class="modal fade"
-                id="staticBackdrop"
-                data-backdrop="static"
-                data-keyboard="false"
-                tabindex="-1"
-                aria-labelledby="staticBackdropLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form role="form" class="text-center" action="{{ url('/requests/'.@$place->id) }}" method="post">
-                        {{ csrf_field() }}
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                                  <input type="text" class="form-control" id="name" placeholder="@lang('Name')" name="name"
-                                      value="{{old('name')}}" required>
-                                  @if ($errors->has('name'))
-                                  <span class="help-block">
-                                      <strong>{{ $errors->first('name') }}</strong>
-                                  </span>
-                                  @endif
-                              </div>
-                          </div>
-                          <div class="col">
-                            <div class="form-group">
-                                  <input type="text" class="form-control" id="number" placeholder="@lang('number')" name="number"
-                                      value="{{old('number')}}" required>
-                                  @if ($errors->has('number'))
-                                  <span class="help-block">
-                                      <strong>{{ $errors->first('number') }}</strong>
-                                  </span>
-                                  @endif
-                              </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col">
-                              <div class="form-group">
-                                  <input type="text" class="form-control" id="Address" placeholder="@lang('Address')"
-                                      name="Address" value="{{old('Address')}}" required>
-                                  @if ($errors->has('Address'))
-                                  <span class="help-block">
-                                      <strong>{{ $errors->first('Address') }}</strong>
-                                  </span>
-                                  @endif
-                              </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-md-6">
-                            <select class="custom-select mb-3" name="Size">
-                              <option selected value="0">@lang('Size')</option>
-                              <option value="Sm">Sm</option>
-                              <option value="Lg">Lg</option>
-                              <option value="Xl">Xl</option>
-                              <option value="Xxl">Xxl</option>
-                            </select>
-                            @if ($errors->has('Size'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('Size') }}</strong>
-                            </span>
-                            @endif
-                          </div>
-                          <div class="col-md-6">
-                            <select class="custom-select mb-3" name="Color">
-                              <option selected value="0">@lang('Color')</option>
-                              <option value="Red">Red</option>
-                              <option value="Black">Black</option>
-                              <option value="Orange">Orange</option>
-                              <option value="Other">Other</option>
-                            </select>
-                            @if ($errors->has('Color'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('Color') }}</strong>
-                            </span>
-                            @endif
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                              <div class="form-group">
-                                  <textarea class="form-control" rows="4" id="message" name="message"
-                                      placeholder="@lang('Your Message')">{{old('message')}}</textarea>
-                                  @if ($errors->has('message'))
-                                  <span class="help-block">
-                                      <strong>{{ $errors->first('message') }}</strong>
-                                  </span>
-                                  @endif
-                              </div>
-                          </div>
-                        </div>
-                        <button type="submit" class="btn-block send_form">@lang('Send')</button>
-                      </form>
-                    </div>
+<!-- ================= Start Details Product ================= -->
+  <div class="detals-product  @if (App::isLocale('ar'))  text-right  @endif ">
+    <div class="container">
+      <div class="card">
+        <div class="wrapper row">
+          <div class="preview col-md-5">
+            <div class="preview-pic tab-content">
+              @if (@$place->images )
+                @foreach ( @$place->images as $key => $image)
+                  <div class="tab-pane @if ($key == 0 )  active  @endif" id="pic-{{@$image->id}}">
+                    <img src="{{ @$image->name ? '/img/places_images/'.$image->name : url('/dist/img/user2-160x160.jpg')}}" alt="{{@$place->name}}" />
                   </div>
-                </div>
-              </div>
+                @endforeach
+              @endif
+            </div>
+
+            <ul class="preview-thumbnail nav nav-tabs">
+              @if (@$place->images )
+                @foreach ( @$place->images as $key => $image)
+                  <li class=" @if ($key == 0 )  active  @endif ">
+                    <a data-target="#pic-{{@$image->id}}" data-toggle="tab"
+                      >
+                    <img src="{{ @$image->name ? '/img/places_images/'.$image->name : url('/dist/img/user2-160x160.jpg')}}" alt="{{@$place->name}}" />
+                    </a>
+                  </li>
+                @endforeach
+              @endif
+            </ul>
+          </div>
+
+          <div class="details col-md-7">
+            <h2>
+               @if (App::isLocale('ar'))
+                {{ @$place->title_ar }}
+              @else
+                {{ @$place->title }}
+              @endif
+            </h2>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <h2>
+              <span>
+                {{ @$place->price_after_discount }} @if (App::isLocale('ar')) جنية @else EL @endif
+              </span>
+              <span class="sale">
+                {{ @$place->price }} @if (App::isLocale('ar')) جنية @else EL @endif
+              </span>
+            </h2>
+
+            <h6>@lang('Product Overview')</h6>
+            @if (App::isLocale('ar'))
+              {!! @$place->desc_ar !!}
+            @else
+              {!! @$place->desc !!}
+            @endif
+
+            <h6>@lang('Size')</h6>
+            <ul>
+              <li><a href="#">Sm</a></li>
+              <li><a href="#">Lg</a></li>
+              <li><a href="#">Xl</a></li>
+              <li><a href="#">Xxl</a></li>
+            </ul>
+
+            <h6>@lang('Color')</h6>
+            <ul>
+              <li><a href="#">@lang('Black')</a></li>
+              <li><a href="#">@lang('White')</a></li>
+              <li><a href="#">@lang('Green')</a></li>
+              <li><a href="#">@lang('Red')</a></li>
+            </ul>
+
+            <div class="add-cart">
+              <a href="{{ url('/cart') }}" class="cart-icon" data-id="{{@$place->id}}"> @lang('Add To Cart')</a>
             </div>
           </div>
-          @endif
         </div>
       </div>
     </div>
-    <!-- End Details Products -->
+  </div>
+  <!-- ================= End Img Details Product ================= -->
 
+  <!-- ================= Start Description ================= -->
+  <div class="description @if (App::isLocale('ar'))  text-right  @endif ">
+    <div class="container">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button
+                class="btn btn-link"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >@lang('description')
 
+              </button>
+            </h2>
+          </div>
+
+          <div
+            id="collapseOne"
+            class="collapse show"
+            aria-labelledby="headingOne"
+            data-parent="#accordionExample"
+          >
+            <div class="card-body">
+              @if (App::isLocale('ar'))
+                {!! @$place->desc_ar !!}
+              @else
+                {!! @$place->desc !!}
+              @endif
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              > @lang('review')
+
+              </button>
+            </h2>
+          </div>
+          <div
+            id="collapseTwo"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionExample"
+          >
+            <div class="card-body">
+              @if (App::isLocale('ar'))
+                {!! @$place->desc_ar !!}
+              @else
+                {!! @$place->desc !!}
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >@lang('shipping')
+
+              </button>
+            </h2>
+          </div>
+          <div
+            id="collapseThree"
+            class="collapse"
+            aria-labelledby="headingThree"
+            data-parent="#accordionExample"
+          >
+            <div class="card-body">
+              @if (App::isLocale('ar'))
+                {!! @$place->desc_ar !!}
+              @else
+                {!! @$place->desc !!}
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ================= End Description ================= -->
+<div class="overlay-load"></div>
+<style>
+    .clickable-row{
+        cursor: pointer;
+    }
+    .cart .table .sale {
+        text-decoration: line-through;
+    }
+    .overlay-load{
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        background: rgba(255,255,255,0.8) url("{{  url('/images/loader.gif')}}") center no-repeat;
+    }
+    /* Turn off scrollbar when body element has the loading class */
+    body.loading{
+        overflow: hidden;
+    }
+    /* Make spinner image visible when body element has the loading class */
+    body.loading .overlay-load{
+        display: block;
+    }
+</style>
+@endsection
+@section('js')
+@if (Auth::check())
+  <script>
+    $(document).on({
+        ajaxStart: function(){
+            $("body").addClass("loading");
+        },
+        ajaxStop: function(){
+          setTimeout(function () {
+              $("body").removeClass("loading");
+          }, 1000);
+        }
+    });
+    $(document).ready(function () {
+      $('.cart-icon').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        var request = $.ajax({
+          url: "/cart/add/"+id,
+          type: "POST",
+          data: {
+            "_token": "{{ csrf_token() }}"
+          },
+          dataType: 'json',
+        });
+
+        request.done(function(msg) {
+          alert( msg.message );
+        });
+
+        request.fail(function(jqXHR, textStatus) {
+          alert( "Request failed: " + textStatus );
+        });
+      });
+    });
+  </script>
+@endif
 @endsection

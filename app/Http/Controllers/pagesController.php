@@ -23,9 +23,9 @@ class pagesController extends Controller
     public function show($id)
     {
         $page = pages::findOrFail($id);
-        $place = places::where('page_id', $page->id)->first();
-        $places = places::where('id', '!=', $place->id )->where('page_id', $page->id)->orderBy('id', 'DESC')->get()->take(5);
-        return view('pages.show', compact(['page', 'places', 'place']));
+        $places = places::where('page_id', $page->id)->orderBy('id','desc')->paginate(12);
+        $pages = pages::all();
+        return view('pages.show', compact(['page', 'places', 'pages']));
     }
     // show  post
     public function place($id)
@@ -34,8 +34,7 @@ class pagesController extends Controller
         if ($place) {
             $place->view = $place->view + 1 ;
             $place->save();
-            $places = places::where('id', '!=', $place->id )->where('page_id', $place->page_id)->orderBy('id', 'decs')->get()->take(5);
-            return view('pages.place', compact(['place', 'places']));
+            return view('pages.place', compact(['place']));
         }
         return view('errors.404');
     }

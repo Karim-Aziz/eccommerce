@@ -16,11 +16,7 @@
         <div class="row" data-aos="zoom-in" data-aos-duration="1500">
           <div class="col-md-12">
             <div class="show-ser">
-              <form role="form" class="form-inline" action="{{url('/pages/search')}}" method="get">
-                <input class="form-control" placeholder="Search..." name="title" value="{{ old('title') }}" />
-                {{ csrf_field() }}
-                <button type="submit"><i class="fas fa-search"></i></button>
-              </form>
+
               <h4>@lang('Search Results')</h4>
               @if (count($places) > 0)
                 <ul class="list-group list-group-flush">

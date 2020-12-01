@@ -26,7 +26,7 @@ Route::group([  'prefix'=>'/favorite'], function () {
 });
 Route::group([  'prefix'=>'/order'], function () {
     Route::get('/', 'OrderController@index');
-    Route::get('/checkout', 'OrderController@checkout');
+    Route::post('/checkout', 'OrderController@checkout');
 });
 Route::group([  'prefix'=>'/cart'], function () {
     Route::get('/', 'CartController@index');
