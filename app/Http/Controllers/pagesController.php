@@ -7,6 +7,7 @@ use App\places;
 use App\requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class pagesController extends Controller
@@ -20,10 +21,35 @@ class pagesController extends Controller
     }
 
     // show  page
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $show = $request->show ? $request->show : 12;
+        $sort = $request->sort ? $request->sort : null;
         $page = pages::findOrFail($id);
-        $places = places::where('page_id', $page->id)->orderBy('id','desc')->paginate(12);
+        $query = places::where('page_id', $page->id);
+        if ($sort) {
+            switch ($sort) {
+                case 'Title':
+                    if (Session::get('app_locale') == 'ar') {
+                        $query =$query->orderBy('title_ar','asc');
+                    }else {
+                        $query =$query->orderBy('title','asc');
+                    }
+                    break;
+                case 'Price':
+                    $query =$query->orderBy('Price','desc');
+                    break;
+                case 'Date':
+                    $query =$query->orderBy('created_at','desc');
+                    break;
+                default:
+                    $query =$query->orderBy('id','desc');
+                    break;
+            }
+        } else {
+            $query =$query->orderBy('id','desc');
+        }
+        $places = $query->paginate($show)->appends(Input::all()) ;
         $pages = pages::all();
         return view('pages.show', compact(['page', 'places', 'pages']));
     }
@@ -60,7 +86,7 @@ class pagesController extends Controller
         $credentials = requests::credentials($request);
         $credentials['place_id'] = $id;
         $requests = requests::create($credentials);
-        if (App::isLocale('ar')) {
+        if (Session::get('app_locale') == 'ar') {
             $message = 'تمت الاضافه بنجاح';
         } else {
             $message = 'Add success';

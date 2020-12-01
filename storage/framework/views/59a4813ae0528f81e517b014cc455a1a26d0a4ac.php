@@ -21,6 +21,7 @@
     <!-- ================= Start Filter Product =================-->
     <div class="products-shop <?php if(App::isLocale('ar')): ?>  text-right  <?php endif; ?>">
       <div class="container">
+        <form id="form" action="<?php echo e(url('/pages/'.$page->id)); ?>" method="get">
         <div class="row">
           <div class="col-md-3">
             <div class="filter-pro">
@@ -41,56 +42,26 @@
                 <?php endif; ?>
               </div>
 
-              <div class="size">
-                <h6>Size</h6>
-                <ul>
-                  <li><a href="#">Small</a></li>
-                  <li><a href="#">Large</a></li>
-                  <li><a href="#">XL</a></li>
-                  <li><a href="#">XXL</a></li>
-                </ul>
-              </div>
 
-              <div class="price">
-                <h6>Price</h6>
-                <p>
-                  <label for="amount">Price range:</label>
-                  <input type="text" id="amount" readonly />
-                </p>
-
-                <div id="slider-range"></div>
-              </div>
-
-              <div class="color">
-                <h6>Color</h6>
-                <ul>
-                  <li><a href="#">Black</a></li>
-                  <li><a href="#">Gold</a></li>
-                  <li><a href="#">Spacegrey</a></li>
-                  <li><a href="#">Black with red</a></li>
-                  <li><a href="#">Black Leather</a></li>
-                </ul>
-              </div>
             </div>
           </div>
-
           <div class="col-md-9">
             <div class="filter-search">
               <div class="row">
                 <div class="col-md-6">
-                  <select class="custom-select" name="sort">
-                    <option selected>Sort by</option>
-                    <option value="1">Name</option>
-                    <option value="2">Price</option>
-                    <option value="3">Data</option>
+                  <select class="custom-select" name="sort" id="sort">
+                    <option><?php echo app('translator')->getFromJson('Sort by'); ?></option>
+                    <option <?php if(request()->query('sort')== 'Title'): ?> selected <?php endif; ?>  value="Title"><?php echo app('translator')->getFromJson('Title'); ?></option>
+                    <option <?php if(request()->query('sort')== 'Price'): ?> selected <?php endif; ?>  value="Price"><?php echo app('translator')->getFromJson('Price'); ?></option>
+                    <option <?php if(request()->query('sort')== 'Date'): ?> selected <?php endif; ?>  value="Date"><?php echo app('translator')->getFromJson('Date'); ?></option>
                   </select>
                 </div>
 
                 <div class="col-md-6">
-                  <select class="custom-select" name="show">
-                    <option selected>Show 10</option>
-                    <option value="1">Show 20</option>
-                    <option value="2">Show 30</option>
+                  <select class="custom-select" name="show" id="show">
+                    <option <?php if(request()->query('show')== 12): ?> selected <?php endif; ?> value="12"><?php echo app('translator')->getFromJson('Show'); ?> 12</option>
+                    <option <?php if(request()->query('show') == 24): ?> selected <?php endif; ?> value="24"><?php echo app('translator')->getFromJson('Show'); ?>  24</option>
+                    <option <?php if(request()->query('show') == 48): ?> selected <?php endif; ?> value="48"><?php echo app('translator')->getFromJson('Show'); ?>  48</option>
                   </select>
                 </div>
               </div>
@@ -189,6 +160,7 @@
 
 
           </div>
+          </form>
         </div>
       </div>
     </div>
@@ -236,6 +208,12 @@
         }
     });
     $(document).ready(function () {
+      $('#show').on('change', function (e) {
+        $("#form").submit();
+      });
+      $('#sort').on('change', function (e) {
+        $("#form").submit();
+      });
       $('.favorite').on('click', function (e) {
         e.preventDefault();
         var id = $(this).attr("data-id");
