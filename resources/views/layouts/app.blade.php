@@ -74,7 +74,9 @@
                 @endif
                 <span>|</span>
                 <a href="{{ url('/cart') }}" >
-                @lang('My Cart') <i class="fas fa-shopping-cart"></i>
+                @lang('My Cart')
+
+                <i class="fas fa-shopping-cart"><span class="badge badge-pill badge-danger">{{ App\Cart::CartCount() }}</span></i>
                 </a>
                 <span>|</span>
                 <a href="{{ url('/order') }}">@lang('My Orders')</a>

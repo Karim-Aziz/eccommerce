@@ -75,7 +75,9 @@
                 <?php endif; ?>
                 <span>|</span>
                 <a href="<?php echo e(url('/cart')); ?>" >
-                <?php echo app('translator')->getFromJson('My Cart'); ?> <i class="fas fa-shopping-cart"></i>
+                <?php echo app('translator')->getFromJson('My Cart'); ?>
+
+                <i class="fas fa-shopping-cart"><span class="badge badge-pill badge-danger"><?php echo e(App\Cart::CartCount()); ?></span></i>
                 </a>
                 <span>|</span>
                 <a href="<?php echo e(url('/order')); ?>"><?php echo app('translator')->getFromJson('My Orders'); ?></a>

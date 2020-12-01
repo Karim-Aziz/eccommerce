@@ -10,6 +10,7 @@ class Cart extends Model
 {
     //
     protected $table = 'carts';
+    protected $dates = ['created_at', 'updated_at'];
     protected $fillable = [
         'user_id',
         'place_id',
@@ -44,6 +45,12 @@ class Cart extends Model
             $currency = ' EL ';
         }
         return $sum . $currency ;
+    }
+
+    public static function CartCount()
+    {
+        $carts = self::where(['user_id' => Auth::id() ])->get();
+        return $carts->count() ;
     }
 
     public static function credentials($request)

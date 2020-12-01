@@ -40,4 +40,17 @@ class Order extends Model
     {
         return $this->hasOne('App\User', 'id', 'user_id');
     }
+
+
+    public function product()
+    {
+        return $this->hasMany('App\OrderProduct', 'order_id', 'id');
+    }
+
+
+
+    public function places()
+    {
+        return $this->belongsToMany('App\places', 'order_products', 'order_id', 'place_id');
+    }
 }
