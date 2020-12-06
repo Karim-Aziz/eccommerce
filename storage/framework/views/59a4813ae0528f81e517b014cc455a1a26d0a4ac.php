@@ -41,8 +41,40 @@
                 </ul>
                 <?php endif; ?>
               </div>
-
-
+              <div class="size">
+                <h6><?php echo app('translator')->getFromJson('Size'); ?></h6>
+                <input id ="size" name="size" hidden value="<?php echo e(request()->query('size') != null ? request()->query('size') : ''); ?>">
+                <?php if(count(App\Size::all()) > 0): ?>
+                  <ul>
+                  <?php $__currentLoopData = App\Size::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <li >
+                      <?php if(App::isLocale('ar')): ?>
+                        <a href="#" class="size-value" data-val="<?php echo e(@$item->name_ar); ?>"> <?php echo e(@$item->name_ar); ?></a>
+                      <?php else: ?>
+                        <a href="#" class="size-value" data-val="<?php echo e(@$item->name); ?>"> <?php echo e(@$item->name); ?></a>
+                      <?php endif; ?>
+                      </li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </ul>
+                <?php endif; ?>
+              </div>
+              <div class="color">
+                <h6><?php echo app('translator')->getFromJson('Color'); ?></h6>
+                <input id ="color" name="color" hidden value="<?php echo e(request()->query('color') != null ? request()->query('color') : ''); ?>">
+                <?php if(count(App\Color::all()) > 0): ?>
+                  <ul>
+                  <?php $__currentLoopData = App\Color::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <li >
+                      <?php if(App::isLocale('ar')): ?>
+                        <a href="#" class="color-value" data-val="<?php echo e(@$item->name_ar); ?>"> <?php echo e(@$item->name_ar); ?></a>
+                      <?php else: ?>
+                        <a href="#" class="color-value" data-val="<?php echo e(@$item->name); ?>"> <?php echo e(@$item->name); ?></a>
+                      <?php endif; ?>
+                      </li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </ul>
+                <?php endif; ?>
+              </div>
             </div>
           </div>
           <div class="col-md-9">
@@ -206,6 +238,18 @@
         }
     });
     $(document).ready(function () {
+      $('.size-value').on('click', function (e) {
+        e.preventDefault();
+        var val = $(this).attr("data-val");
+        $('#size').val(val);
+        $("#form").submit();
+      });
+      $('.color-value').on('click', function (e) {
+        e.preventDefault();
+        var val = $(this).attr("data-val");
+        $('#color').val(val);
+        $("#form").submit();
+      });
       $('#show').on('change', function (e) {
         $("#form").submit();
       });

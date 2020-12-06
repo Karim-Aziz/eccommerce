@@ -41,8 +41,40 @@
                 </ul>
                 @endif
               </div>
-
-
+              <div class="size">
+                <h6>@lang('Size')</h6>
+                <input id ="size" name="size" hidden value="{{ request()->query('size') != null ? request()->query('size') : ''}}">
+                @if (count(App\Size::all()) > 0)
+                  <ul>
+                  @foreach (App\Size::all() as $item)
+                      <li >
+                      @if (App::isLocale('ar'))
+                        <a href="#" class="size-value" data-val="{{ @$item->name_ar }}"> {{ @$item->name_ar }}</a>
+                      @else
+                        <a href="#" class="size-value" data-val="{{ @$item->name }}"> {{ @$item->name }}</a>
+                      @endif
+                      </li>
+                    @endforeach
+                  </ul>
+                @endif
+              </div>
+              <div class="color">
+                <h6>@lang('Color')</h6>
+                <input id ="color" name="color" hidden value="{{ request()->query('color') != null ? request()->query('color') : ''}}">
+                @if (count(App\Color::all()) > 0)
+                  <ul>
+                  @foreach (App\Color::all() as $item)
+                      <li >
+                      @if (App::isLocale('ar'))
+                        <a href="#" class="color-value" data-val="{{ @$item->name_ar }}"> {{ @$item->name_ar }}</a>
+                      @else
+                        <a href="#" class="color-value" data-val="{{ @$item->name }}"> {{ @$item->name }}</a>
+                      @endif
+                      </li>
+                    @endforeach
+                  </ul>
+                @endif
+              </div>
             </div>
           </div>
           <div class="col-md-9">
@@ -203,6 +235,18 @@
         }
     });
     $(document).ready(function () {
+      $('.size-value').on('click', function (e) {
+        e.preventDefault();
+        var val = $(this).attr("data-val");
+        $('#size').val(val);
+        $("#form").submit();
+      });
+      $('.color-value').on('click', function (e) {
+        e.preventDefault();
+        var val = $(this).attr("data-val");
+        $('#color').val(val);
+        $("#form").submit();
+      });
       $('#show').on('change', function (e) {
         $("#form").submit();
       });

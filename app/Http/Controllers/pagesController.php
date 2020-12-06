@@ -25,8 +25,32 @@ class pagesController extends Controller
     {
         $show = $request->show ? $request->show : 12;
         $sort = $request->sort ? $request->sort : null;
+        $size = $request->size ? $request->size : null;
+        $color = $request->color ? $request->color : null;
         $page = pages::findOrFail($id);
         $query = places::where('page_id', $page->id);
+        if ($color) {
+            if (Session::get('app_locale') == 'ar') {
+                $query =$query->whereHas('colors_main', function ($query) use ($color){
+                    $query->where('name_ar', $color);
+                });
+            } else {
+                $query =$query->whereHas('colors_main', function ($query) use ($color){
+                    $query->where('name', $color);
+                });
+            }
+        }
+        if ($size) {
+            if (Session::get('app_locale') == 'ar') {
+                $query =$query->whereHas('sizes_main', function ($query) use ($size){
+                    $query->where('name_ar', $size);
+                });
+            } else {
+                $query =$query->whereHas('sizes_main', function ($query) use ($size){
+                    $query->where('name', $size);
+                });
+            }
+        }
         if ($sort) {
             switch ($sort) {
                 case 'Title':

@@ -74,17 +74,6 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>price_ar</label>
-                            <input id="price_ar" type="text" class="form-control" name="price_ar" value="{{ old('price_ar') }}"
-                                required autofocus>
-
-                            @if ($errors->has('price_ar'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('price_ar') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-                        <div class="form-group">
                             <label>price_after_discount</label>
                             <input id="price_after_discount" type="text" class="form-control" name="price_after_discount" value="{{ old('price_after_discount') }}"
                                 required autofocus>
@@ -92,17 +81,6 @@
                             @if ($errors->has('price_after_discount'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('price_after_discount') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>price_after_discount_ar</label>
-                            <input id="price_after_discount_ar" type="text" class="form-control" name="price_after_discount_ar" value="{{ old('price_after_discount_ar') }}"
-                                required autofocus>
-
-                            @if ($errors->has('price_after_discount_ar'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('price_after_discount_ar') }}</strong>
                             </span>
                             @endif
                         </div>
@@ -118,6 +96,30 @@
                                 <strong>{{ $errors->first('page_id') }}</strong>
                             </span>
                             @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Colors</label>
+                            <select name="color[]" class="form-control select2" multiple="multiple" data-placeholder="Select one atleast" placeholder="Select one atleast" style="width: 100%;">
+                            @foreach (App\Color::all() as $item)
+                                @if (is_array(old('color')))
+                                    <option  value="{{$item->id}}" @if (  in_array($item->id, old('color'))) selected @endif>{{$item->name}}</option>
+                                @else
+                                    <option  value="{{$item->id}}">{{$item->name}}</option>
+                                @endif
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Size</label>
+                            <select name="size[]" class="form-control select2" multiple="multiple" data-placeholder="Select one atleast" placeholder="Select one atleast" style="width: 100%;">
+                            @foreach (App\Size::all() as $item)
+                                @if (is_array(old('size')))
+                                    <option  value="{{$item->id}}" @if (  in_array($item->id, old('size'))) selected @endif>{{$item->name}}</option>
+                                @else
+                                    <option  value="{{$item->id}}">{{$item->name}}</option>
+                                @endif
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Images</label>
@@ -170,6 +172,27 @@
 <script type="application/javascript">
     $(document).ready(function () {
         CKEDITOR.config.contentsLangDirection = 'rtl';
+        $('.select2').select2({
+             placeholder: "Select a state"
+        });
+        $('.select3').select2({
+             placeholder: "Select a state"
+        });
     });
+
 </script>
+@endsection
+@section('css')
+    <style>
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #3c8dbc;
+            border-color: #367fa9;
+            padding: 1px 10px;
+            color: #fff;
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            margin-right: 5px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
 @endsection
