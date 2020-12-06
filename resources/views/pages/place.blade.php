@@ -78,18 +78,32 @@
 
             <h6>@lang('Size')</h6>
             <ul>
-              <li><a href="#">Sm</a></li>
-              <li><a href="#">Lg</a></li>
-              <li><a href="#">Xl</a></li>
-              <li><a href="#">Xxl</a></li>
+              @if ($place->sizes_main->count() > 0)
+                @foreach ($place->sizes_main as  $size )
+                  <li>
+                    @if (App::isLocale('ar'))
+                      {{ @$size->name_ar }}
+                    @else
+                      {{ @$size->name }}
+                    @endif
+                  </li>
+                @endforeach
+              @endif
             </ul>
 
             <h6>@lang('Color')</h6>
             <ul>
-              <li><a href="#">@lang('Black')</a></li>
-              <li><a href="#">@lang('White')</a></li>
-              <li><a href="#">@lang('Green')</a></li>
-              <li><a href="#">@lang('Red')</a></li>
+              @if ($place->colors_main->count() > 0)
+                @foreach ($place->colors_main as  $color )
+                  <li>
+                    @if (App::isLocale('ar'))
+                      {{ @$color->name_ar }}
+                    @else
+                      {{ @$color->name }}
+                    @endif
+                  </li>
+                @endforeach
+              @endif
             </ul>
 
             <div class="add-cart">

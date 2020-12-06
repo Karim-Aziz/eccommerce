@@ -36,6 +36,10 @@ class places extends Model
             'page_id' => 'required|integer',
             'images' => 'required',
             'images.*' => 'image|mimes:jpg,jpeg,gif,png,WebP',
+            'color' => 'required',
+            'color.*' => 'integer',
+            'size' => 'required',
+            'size.*' => 'integer',
         ];
         return $rules;
     }
@@ -57,6 +61,10 @@ class places extends Model
             'desc' => 'required|string',
             'desc_ar' => 'required|string',
             'page_id' => 'required|integer',
+            'color' => 'required',
+            'color.*' => 'integer',
+            'size' => 'required',
+            'size.*' => 'integer',
         ];
         if ($request->file('images') != null) {
             $rules2 = [
@@ -116,14 +124,23 @@ class places extends Model
     {
         return $this->belongsToMany('App\Image', 'places_images', 'place_id', 'image_id');
     }
-
     public function colors()
     {
-        return $this->belongsToMany('App\Color', 'ColorPlace', 'color_id', 'place_id');
+        return $this->hasMany('App\ColorPlace', 'place_id', 'id');
     }
-
     public function sizes()
     {
-        return $this->belongsToMany('App\Size', 'size_places', 'size_id', 'place_id');
+        return $this->hasMany('App\SizePlace', 'place_id', 'id');
     }
+
+    public function colors_main()
+    {
+        return $this->belongsToMany('App\Color', 'color_places', 'place_id', 'color_id');
+    }
+
+    public function sizes_main()
+    {
+        return $this->belongsToMany('App\Size', 'size_places', 'place_id', 'size_id');
+    }
+
 }

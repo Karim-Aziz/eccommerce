@@ -82,18 +82,36 @@
 
             <h6><?php echo app('translator')->getFromJson('Size'); ?></h6>
             <ul>
-              <li><a href="#">Sm</a></li>
-              <li><a href="#">Lg</a></li>
-              <li><a href="#">Xl</a></li>
-              <li><a href="#">Xxl</a></li>
+              <?php if($place->sizes_main->count() > 0): ?>
+                <?php $__currentLoopData = $place->sizes_main; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <li>
+                    <?php if(App::isLocale('ar')): ?>
+                      <?php echo e(@$size->name_ar); ?>
+
+                    <?php else: ?>
+                      <?php echo e(@$size->name); ?>
+
+                    <?php endif; ?>
+                  </li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <?php endif; ?>
             </ul>
 
             <h6><?php echo app('translator')->getFromJson('Color'); ?></h6>
             <ul>
-              <li><a href="#"><?php echo app('translator')->getFromJson('Black'); ?></a></li>
-              <li><a href="#"><?php echo app('translator')->getFromJson('White'); ?></a></li>
-              <li><a href="#"><?php echo app('translator')->getFromJson('Green'); ?></a></li>
-              <li><a href="#"><?php echo app('translator')->getFromJson('Red'); ?></a></li>
+              <?php if($place->colors_main->count() > 0): ?>
+                <?php $__currentLoopData = $place->colors_main; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <li>
+                    <?php if(App::isLocale('ar')): ?>
+                      <?php echo e(@$color->name_ar); ?>
+
+                    <?php else: ?>
+                      <?php echo e(@$color->name); ?>
+
+                    <?php endif; ?>
+                  </li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <?php endif; ?>
             </ul>
 
             <div class="add-cart">

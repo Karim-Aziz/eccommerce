@@ -123,6 +123,46 @@
                                                     </span>
                                                     <?php endif; ?>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label>Colors</label>
+                                                    <select name="color[]" class="form-control select2" multiple="multiple" data-placeholder="Select one atleast" placeholder="Select one atleast" style="width: 100%;">
+                                                    <?php $__currentLoopData = App\Color::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if(is_array(old('color'))): ?>
+                                                            <option  value="<?php echo e($item->id); ?>" <?php if(  in_array($item->id, old('color'))): ?> selected <?php endif; ?>><?php echo e($item->name); ?></option>
+                                                        <?php elseif($place->colors->count() > 0): ?>
+                                                            <?php
+                                                                $arr = [];
+                                                                foreach ($place->colors as  $value) {
+                                                                    $arr[] = $value->color_id;
+                                                                }
+                                                            ?>
+                                                            <option  value="<?php echo e($item->id); ?>" <?php if(  in_array($item->id, $arr)): ?> selected <?php endif; ?>><?php echo e($item->name); ?></option>
+                                                        <?php else: ?>
+                                                            <option  value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Size</label>
+                                                    <select name="size[]" class="form-control select2" multiple="multiple" data-placeholder="Select one atleast" placeholder="Select one atleast" style="width: 100%;">
+                                                    <?php $__currentLoopData = App\Size::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if(is_array(old('size'))): ?>
+                                                            <option  value="<?php echo e($item->id); ?>" <?php if(  in_array($item->id, old('size'))): ?> selected <?php endif; ?>><?php echo e($item->name); ?></option>
+                                                        <?php elseif($place->sizes->count() > 0): ?>
+                                                            <?php
+                                                                $arr = [];
+                                                                foreach ($place->sizes as  $value) {
+                                                                    $arr[] = $value->size_id;
+                                                                }
+                                                            ?>
+                                                            <option  value="<?php echo e($item->id); ?>" <?php if(  in_array($item->id, $arr)): ?> selected <?php endif; ?>><?php echo e($item->name); ?></option>
+                                                        <?php else: ?>
+                                                            <option  value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
                                                  <div class="form-group">
                                                     <label>Images</label>
                                                     <?php $__currentLoopData = @$place->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -147,6 +187,7 @@
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
+
                                                  <div class="form-group">
                                                     <label>Description</label>
                                                     <textarea id="desc" class="form-control ckeditor" name="desc"
@@ -157,18 +198,7 @@
                                                     </span>
                                                     <?php endif; ?>
                                                 </div>
-                                                <div class="form-group" data-select2-id="13">
-                                                    <label>Multiple</label>
-                                                    <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                                    <option data-select2-id="17">Alabama</option>
-                                                    <option data-select2-id="18">Alaska</option>
-                                                    <option data-select2-id="19">California</option>
-                                                    <option data-select2-id="20">Delaware</option>
-                                                    <option data-select2-id="21">Tennessee</option>
-                                                    <option data-select2-id="22">Texas</option>
-                                                    <option data-select2-id="23">Washington</option>
-                                                    </select>
-                                                </div>
+
 
                                                 <div class="form-group">
                                                     <label>Description Arbic</label>
@@ -267,8 +297,29 @@
 <script type="application/javascript">
     $(document).ready(function () {
         CKEDITOR.config.contentsLangDirection = 'rtl';
+        $('.select2').select2({
+             placeholder: "Select a state"
+        });
+        $('.select3').select2({
+             placeholder: "Select a state"
+        });
     });
 </script>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+    <style>
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #3c8dbc;
+            border-color: #367fa9;
+            padding: 1px 10px;
+            color: #fff;
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            margin-right: 5px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

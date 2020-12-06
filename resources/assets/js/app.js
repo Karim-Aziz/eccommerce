@@ -18,4 +18,4 @@ require('admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')
 require('admin-lte/bower_components/fastclick/lib/fastclick.js');
 require('admin-lte/bower_components/datatables.net/js/jquery.dataTables.min.js');
 require('admin-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js');
-
+require('admin-lte/bower_components/select2/dist/js/select2.full.min.js');
