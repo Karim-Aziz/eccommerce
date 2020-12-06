@@ -207,6 +207,52 @@
 
                         </ul>
                     </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                            <span>Colors</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li>
+                                <a href="/siteAdmin/Color/add">
+                                    <i class="fa fa-circle-o"></i> Add Color
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/siteAdmin/Color/show">
+                                    <i class="fa fa-circle-o"></i> Show / Edit Colors
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-arrows-h" aria-hidden="true"></i>
+                            <span>Sizes</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li>
+                                <a href="/siteAdmin/Size/add">
+                                    <i class="fa fa-circle-o"></i> Add Size
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/siteAdmin/Size/show">
+                                    <i class="fa fa-circle-o"></i> Show / Edit Sizes
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
 
 
                     <li class="treeview">

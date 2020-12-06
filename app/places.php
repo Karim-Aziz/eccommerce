@@ -39,7 +39,7 @@ class places extends Model
         ];
         return $rules;
     }
-    
+
     public function getQuantityAttribute()
     {
         $quantity = @Cart::where(['user_id' => Auth::id() , 'place_id' => $this->id])->first()->quantity;
@@ -115,5 +115,15 @@ class places extends Model
     public function images()
     {
         return $this->belongsToMany('App\Image', 'places_images', 'place_id', 'image_id');
+    }
+
+    public function colors()
+    {
+        return $this->belongsToMany('App\Color', 'ColorPlace', 'color_id', 'place_id');
+    }
+
+    public function sizes()
+    {
+        return $this->belongsToMany('App\Size', 'size_places', 'size_id', 'place_id');
     }
 }

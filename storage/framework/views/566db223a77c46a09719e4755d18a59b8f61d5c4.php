@@ -87,16 +87,7 @@
                                                         </span>
                                                         <?php endif; ?>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>price_ar</label>
-                                                    <input name="price_ar" type="text" class="form-control"
-                                                        value="<?php echo e(old('price_ar')? old('price_ar'): $place->price_ar); ?>">
-                                                        <?php if($errors->has('price_ar')): ?>
-                                                        <span class="help-block">
-                                                            <strong><?php echo e($errors->first('price_ar')); ?></strong>
-                                                        </span>
-                                                        <?php endif; ?>
-                                                </div>
+
                                                 <div class="form-group">
                                                     <label>price_after_discount</label>
                                                     <input name="price_after_discount" type="text" class="form-control"
@@ -107,16 +98,7 @@
                                                         </span>
                                                         <?php endif; ?>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>price_after_discount_ar</label>
-                                                    <input name="price_after_discount_ar" type="text" class="form-control"
-                                                        value="<?php echo e(old('price_after_discount_ar')? old('price_after_discount_ar'): $place->price_after_discount_ar); ?>">
-                                                        <?php if($errors->has('price_after_discount_ar')): ?>
-                                                        <span class="help-block">
-                                                            <strong><?php echo e($errors->first('price_after_discount_ar')); ?></strong>
-                                                        </span>
-                                                        <?php endif; ?>
-                                                </div>
+
 
                                                 <div class="form-group">
                                                     <label for="page_id">Page</label>
@@ -175,6 +157,19 @@
                                                     </span>
                                                     <?php endif; ?>
                                                 </div>
+                                                <div class="form-group" data-select2-id="13">
+                                                    <label>Multiple</label>
+                                                    <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                    <option data-select2-id="17">Alabama</option>
+                                                    <option data-select2-id="18">Alaska</option>
+                                                    <option data-select2-id="19">California</option>
+                                                    <option data-select2-id="20">Delaware</option>
+                                                    <option data-select2-id="21">Tennessee</option>
+                                                    <option data-select2-id="22">Texas</option>
+                                                    <option data-select2-id="23">Washington</option>
+                                                    </select>
+                                                </div>
+
                                                 <div class="form-group">
                                                     <label>Description Arbic</label>
                                                     <textarea id="desc_ar" class="form-control ckeditor" name="desc_ar"

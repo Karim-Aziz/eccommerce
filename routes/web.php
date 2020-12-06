@@ -68,7 +68,20 @@ Route::group(['prefix' => '/siteAdmin'], function () {
         Route::get('/delete/{id}', 'siteAdmin\UserController@delete');
         Route::post('/edit/{id}', 'siteAdmin\UserController@edit');
     });
-
+    Route::group([  'prefix'=>'/Color'],function(){
+        Route::get('/show', 'siteAdmin\ColorController@index');
+        Route::get('/add', 'siteAdmin\ColorController@add');
+        Route::post('/insert', 'siteAdmin\ColorController@insert');
+        Route::get('/delete/{id}', 'siteAdmin\ColorController@delete');
+        Route::post('/edit/{id}', 'siteAdmin\ColorController@edit');
+    });
+    Route::group([  'prefix'=>'/Size'],function(){
+        Route::get('/show', 'siteAdmin\SizeController@index');
+        Route::get('/add', 'siteAdmin\SizeController@add');
+        Route::post('/insert', 'siteAdmin\SizeController@insert');
+        Route::get('/delete/{id}', 'siteAdmin\SizeController@delete');
+        Route::post('/edit/{id}', 'siteAdmin\SizeController@edit');
+    });
     Route::group([  'prefix'=>'/home_desc'],function(){
         Route::get('/show', 'siteAdmin\HomeDescController@index');
         Route::post('/edit/{id}', 'siteAdmin\HomeDescController@edit');
