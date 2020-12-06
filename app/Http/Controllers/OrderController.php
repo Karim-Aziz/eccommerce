@@ -29,7 +29,7 @@ class OrderController extends Controller
     public function index()
     {
         //$userOrders = Auth::user()->Orders;
-        $userOrders = Order::where(['user_id' => Auth::id()])->get();
+        $userOrders = Order::where(['user_id' => Auth::id()])->orderBy('id', 'desc')->get();
         return view('Order.index', compact('userOrders'));
     }
 

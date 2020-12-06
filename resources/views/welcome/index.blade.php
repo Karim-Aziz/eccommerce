@@ -80,6 +80,8 @@
     <script src="{{ url('/lib/isotope/isotope.min.js') }}"></script>
     <!-- jquery ui -->
     <script src="{{ url('/lib/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.11.1/dist/sweetalert2.all.min.js"></script>
+
     <!-- =========== Custom Js File =========== -->
     @if (App::isLocale('ar'))
     <script src="{{ url('/js/main_ar.js') }}"></script>

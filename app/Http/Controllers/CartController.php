@@ -121,6 +121,10 @@ class CartController extends Controller
     {
         return ['success' => true, 'message' => Cart::Amount()];
     }
+    public function count(Request $request)
+    {
+        return ['success' => true, 'message' => Cart::CartCount()];
+    }
     /**
      * Show the form for creating a new resource.
      *

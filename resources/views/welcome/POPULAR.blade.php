@@ -144,10 +144,11 @@
             $("body").addClass("loading");
         },
         ajaxStop: function(){
-          setTimeout(function () {
-              $("body").removeClass("loading");
-          }, 1000);
+          $("body").removeClass("loading");
         }
+        /*setTimeout(function () {
+              $("body").removeClass("loading");
+          }, 1000);*/
     });
     $(document).ready(function () {
       $('.favorite').on('click', function (e) {
@@ -163,11 +164,23 @@
         });
 
         request.done(function(msg) {
-          alert( msg.message );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: msg.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
 
         request.fail(function(jqXHR, textStatus) {
-          alert( "Request failed: " + textStatus );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "Request failed: " + textStatus ,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
       });
       $('.cart-icon').on('click', function (e) {
@@ -183,11 +196,34 @@
         });
 
         request.done(function(msg) {
-          alert( msg.message );
+          $.ajax({
+            url: "/cart/count",
+            type: "POST",
+            data: {
+              "_token": "{{ csrf_token() }}"
+            },
+            dataType: 'json',
+          }).done(function(value) {
+            $('#badge-danger').html(value.message)
+          });
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: msg.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+
         });
 
         request.fail(function(jqXHR, textStatus) {
-          alert( "Request failed: " + textStatus );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "Request failed: " + textStatus ,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
       });
     });

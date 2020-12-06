@@ -199,9 +199,7 @@
             $("body").addClass("loading");
         },
         ajaxStop: function(){
-          setTimeout(function () {
-              $("body").removeClass("loading");
-          }, 1000);
+          $("body").removeClass("loading");
         }
     });
     $(document).ready(function () {

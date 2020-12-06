@@ -16,7 +16,7 @@ Session::put(App::setLocale('en'));
         <h2 class="text-uppercase">@lang('My Cart')</h2>
     </div>
     @if ($userCarts->count() > 0)
-        <table class="table text-center">
+        <table class="table text-center" id="table">
             <thead>
             <tr>
                 <th scope="col">@lang('image')</th>
@@ -151,7 +151,7 @@ Session::put(App::setLocale('en'));
             spin: function (event, ui) {
                 var keepPlus =  $(this) ;
                 var id = $(this).attr("data-id");
-                if (ui.value > 1) {
+                if (ui.value >= 1) {
                     var request = $.ajax({
                     url: "/cart/plus/"+id,
                     type: "POST",
@@ -182,10 +182,22 @@ Session::put(App::setLocale('en'));
                         }).done(function(data) {
                             $('#amount').html(data.message);
                         });
-                        alert( msg.message );
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: msg.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     });
                     request.fail(function(jqXHR, textStatus) {
-                    alert( "Request failed: " + textStatus );
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: "Request failed: " + textStatus ,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     });
                 } else if (ui.value < 1 ) {
                     var request = $.ajax({
@@ -208,10 +220,35 @@ Session::put(App::setLocale('en'));
                             $('#amount').html(data.message);
                         });
                         $('#'+id).remove();
-                        alert( msg.message );
+                        $.ajax({
+                            url: "/cart/count",
+                            type: "POST",
+                            data: {
+                            "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: 'json',
+                        }).done(function(value) {
+                            $('#badge-danger').html(value.message);
+                            if (value.message == 0){
+                                $('#table').remove();
+                            }
+                        });
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: msg.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     });
                     request.fail(function(jqXHR, textStatus) {
-                    alert( "Request failed: " + textStatus );
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: "Request failed: " + textStatus ,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     });
                 }
             },
@@ -223,9 +260,7 @@ Session::put(App::setLocale('en'));
                 $("body").addClass("loading");
             },
             ajaxStop: function(){
-                setTimeout(function () {
-                    $("body").removeClass("loading");
-                }, 1000);
+                $("body").removeClass("loading");;
             }
         });
         $(".clickable-row").click(function() {
@@ -252,12 +287,38 @@ Session::put(App::setLocale('en'));
                         "_token": "{{ csrf_token() }}"
                     },
                     dataType: 'json'
-                    }).done(function(data) {
-                        $('#amount').html(data.message);
-                    });
+                }).done(function(data) {
+                    $('#amount').html(data.message);
+                });
+                $.ajax({
+                    url: "/cart/count",
+                    type: "POST",
+                    data: {
+                    "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                }).done(function(value) {
+                    $('#badge-danger').html(value.message);
+                    if (value.message == 0){
+                        $('#table').remove();
+                    }
+                });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: msg.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
             request.fail(function(jqXHR, textStatus) {
-            alert( "Request failed: " + textStatus );
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: "Request failed: " + textStatus ,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
         });
         $('.checkout').on('click', function (e) {
@@ -271,11 +332,23 @@ Session::put(App::setLocale('en'));
             dataType: 'json',
             });
             request.done(function(msg) {
-                alert( msg.message );
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: msg.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 window.location.href = "{{ url('/order')}}";
             });
             request.fail(function(jqXHR, textStatus) {
-                alert( "Request failed: " + textStatus );
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: "Request failed: " + textStatus ,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
         });
     });

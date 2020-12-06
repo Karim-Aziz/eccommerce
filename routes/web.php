@@ -35,6 +35,7 @@ Route::group([  'prefix'=>'/cart'], function () {
     Route::post('/plus/{id}', 'CartController@plus');
     Route::post('/total/{id}', 'CartController@total');
     Route::post('/amount', 'CartController@amount');
+    Route::post('/count', 'CartController@count');
 });
 
 Route::group([  'prefix'=>'/pages'], function () {

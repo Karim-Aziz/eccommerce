@@ -116,9 +116,7 @@ Session::put(App::setLocale('en'));
                 $("body").addClass("loading");
             },
             ajaxStop: function(){
-                setTimeout(function () {
-                    $("body").removeClass("loading");
-                }, 1000);
+                $("body").removeClass("loading");;
             }
         });
         $(".clickable-row").click(function() {
@@ -140,10 +138,23 @@ Session::put(App::setLocale('en'));
             request.done(function(msg) {
                 //alert( msg.message );
                 $('#'+id).remove();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: msg.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
 
             request.fail(function(jqXHR, textStatus) {
-            alert( "Request failed: " + textStatus );
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: "Request failed: " + textStatus ,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
         });
     });
