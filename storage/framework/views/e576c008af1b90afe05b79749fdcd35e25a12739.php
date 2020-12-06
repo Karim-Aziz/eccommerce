@@ -185,10 +185,10 @@
           >
             <div class="card-body">
               <?php if(App::isLocale('ar')): ?>
-                <?php echo @$place->desc_ar; ?>
+                <?php echo @$place->review_ar; ?>
 
               <?php else: ?>
-                <?php echo @$place->desc; ?>
+                <?php echo @$place->review; ?>
 
               <?php endif; ?>
             </div>
@@ -217,10 +217,10 @@
           >
             <div class="card-body">
               <?php if(App::isLocale('ar')): ?>
-                <?php echo @$place->desc_ar; ?>
+                <?php echo @$place->shipping_ar; ?>
 
               <?php else: ?>
-                <?php echo @$place->desc; ?>
+                <?php echo @$place->shipping; ?>
 
               <?php endif; ?>
             </div>

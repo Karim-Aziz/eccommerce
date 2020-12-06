@@ -19,6 +19,10 @@ class places extends Model
         'price',
         'desc',
         'desc_ar',
+        'shipping',
+        'shipping_ar',
+        'review',
+        'review_ar',
         'view',
         'page_id'
     ];
@@ -33,6 +37,10 @@ class places extends Model
             'price' => 'required|integer',
             'desc' => 'required|string',
             'desc_ar' => 'required|string',
+            'shipping' => 'required|string',
+            'shipping_ar' => 'required|string',
+            'review' => 'required|string',
+            'review_ar' => 'required|string',
             'page_id' => 'required|integer',
             'images' => 'required',
             'images.*' => 'image|mimes:jpg,jpeg,gif,png,WebP',
@@ -60,6 +68,10 @@ class places extends Model
             'price' => 'required|integer',
             'desc' => 'required|string',
             'desc_ar' => 'required|string',
+            'shipping' => 'required|string',
+            'shipping_ar' => 'required|string',
+            'review' => 'required|string',
+            'review_ar' => 'required|string',
             'page_id' => 'required|integer',
             'color' => 'required',
             'color.*' => 'integer',
@@ -87,6 +99,10 @@ class places extends Model
             'price' => $request->price,
             'desc_ar' => $request->desc_ar,
             'desc' => $request->desc,
+            'shipping' => $request->shipping,
+            'shipping_ar' => $request->shipping_ar,
+            'review' => $request->review,
+            'review_ar' => $request->review_ar,
             'page_id' => $request->page_id,
         ];
         return $credentials;

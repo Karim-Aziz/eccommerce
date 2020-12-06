@@ -236,6 +236,16 @@ h6 {
   color: #fff;
   border-radius: 50px;
 }
+.product  .custom-sale {
+  position: absolute;
+  left: 20px;
+  top: 30px;
+  padding: 5px 16px;
+  font-size: 12px;
+  background: #b40f32;
+  color: #fff;
+  border-radius: 50px;
+}
 
 /* *********************** End Project Area *********************** */
 

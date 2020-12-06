@@ -210,6 +210,50 @@
                                                     </span>
                                                     @endif
                                                 </div>
+                                                 <div class="form-group">
+                                                    <label>review</label>
+                                                    <textarea id="review" class="form-control ckeditor" name="review"
+                                                        required>{{old('review')? old('review'): $place->review}}</textarea>
+                                                    @if ($errors->has('review'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('review') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>review Arbic</label>
+                                                    <textarea id="review_ar" class="form-control ckeditor" name="review_ar"
+                                                        required>{{old('review_ar')? old('review_ar'): $place->review_ar}}</textarea>
+                                                    @if ($errors->has('review_ar'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('review_ar') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label>shipping</label>
+                                                    <textarea id="shipping" class="form-control ckeditor" name="shipping"
+                                                        required>{{old('shipping')? old('shipping'): $place->shipping}}</textarea>
+                                                    @if ($errors->has('shipping'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('shipping') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>shipping Arbic</label>
+                                                    <textarea id="shipping_ar" class="form-control ckeditor" name="shipping_ar"
+                                                        required>{{old('shipping_ar')? old('shipping_ar'): $place->shipping_ar}}</textarea>
+                                                    @if ($errors->has('shipping_ar'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('shipping_ar') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </div>
                                                 <div class="box-footer">
                                                     <input type="submit" value="update" class="btn btn-primary" >
                                                 </div>

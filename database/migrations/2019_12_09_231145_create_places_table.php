@@ -23,6 +23,10 @@ class CreatePlacesTable extends Migration
             $table->integer('price');
             $table->text('desc');
             $table->text('desc_ar');
+            $table->text('shipping');
+            $table->text('shipping_ar');
+            $table->text('review');
+            $table->text('review_ar');
             $table->integer('page_id')->nullable()->unsigned();
             $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
             $table->timestamps();

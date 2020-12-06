@@ -175,9 +175,9 @@
           >
             <div class="card-body">
               @if (App::isLocale('ar'))
-                {!! @$place->desc_ar !!}
+                {!! @$place->review_ar !!}
               @else
-                {!! @$place->desc !!}
+                {!! @$place->review !!}
               @endif
             </div>
           </div>
@@ -205,9 +205,9 @@
           >
             <div class="card-body">
               @if (App::isLocale('ar'))
-                {!! @$place->desc_ar !!}
+                {!! @$place->shipping_ar !!}
               @else
-                {!! @$place->desc !!}
+                {!! @$place->shipping !!}
               @endif
             </div>
           </div>

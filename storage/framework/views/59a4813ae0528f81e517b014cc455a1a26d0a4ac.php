@@ -32,9 +32,9 @@
                   <?php $__currentLoopData = $pages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li >
                     <?php if(App::isLocale('ar')): ?>
-                      <a  href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name_ar); ?></a>
+                      <a class="<?php echo e(Request::is('pages/'.@$page->id) ? 'active' : ''); ?>" href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name_ar); ?></a>
                     <?php else: ?>
-                      <a href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name); ?></a>
+                      <a class="<?php echo e(Request::is('pages/'.@$page->id) ? 'active' : ''); ?>" href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name); ?></a>
                     <?php endif; ?>
                     </li>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -49,9 +49,9 @@
                   <?php $__currentLoopData = App\Size::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <li >
                       <?php if(App::isLocale('ar')): ?>
-                        <a href="#" class="size-value" data-val="<?php echo e(@$item->name_ar); ?>"> <?php echo e(@$item->name_ar); ?></a>
+                        <a href="#" class="size-value <?php if(request()->query('size')== @$item->name_ar): ?> active <?php endif; ?>" data-val="<?php echo e(@$item->name_ar); ?>"> <?php echo e(@$item->name_ar); ?></a>
                       <?php else: ?>
-                        <a href="#" class="size-value" data-val="<?php echo e(@$item->name); ?>"> <?php echo e(@$item->name); ?></a>
+                        <a href="#" class="size-value <?php if(request()->query('size')== @$item->name): ?> active <?php endif; ?>" data-val="<?php echo e(@$item->name); ?>"> <?php echo e(@$item->name); ?></a>
                       <?php endif; ?>
                       </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -66,9 +66,9 @@
                   <?php $__currentLoopData = App\Color::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <li >
                       <?php if(App::isLocale('ar')): ?>
-                        <a href="#" class="color-value" data-val="<?php echo e(@$item->name_ar); ?>"> <?php echo e(@$item->name_ar); ?></a>
+                        <a href="#" class="color-value <?php if(request()->query('color')== @$item->name_ar): ?> active <?php endif; ?>" data-val="<?php echo e(@$item->name_ar); ?>"> <?php echo e(@$item->name_ar); ?></a>
                       <?php else: ?>
-                        <a href="#" class="color-value" data-val="<?php echo e(@$item->name); ?>"> <?php echo e(@$item->name); ?></a>
+                        <a href="#" class="color-value <?php if(request()->query('color')== @$item->name): ?> active <?php endif; ?>" data-val="<?php echo e(@$item->name); ?>"> <?php echo e(@$item->name); ?></a>
                       <?php endif; ?>
                       </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -199,6 +199,10 @@
     <!-- ================= Start Filter Product =================-->
 <div class="overlay-load"></div>
 <style>
+    .size .active,.cat .active, .color .active {
+      color: var(--main-color) !important;
+      font-weight: bold !important;
+    }
     .clickable-row{
         cursor: pointer;
     }
@@ -269,11 +273,23 @@
         });
 
         request.done(function(msg) {
-          alert( msg.message );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: msg.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
 
         request.fail(function(jqXHR, textStatus) {
-          alert( "Request failed: " + textStatus );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "Request failed: " + textStatus ,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
       });
       $('.cart-icon').on('click', function (e) {
@@ -289,11 +305,23 @@
         });
 
         request.done(function(msg) {
-          alert( msg.message );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: msg.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
 
         request.fail(function(jqXHR, textStatus) {
-          alert( "Request failed: " + textStatus );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "Request failed: " + textStatus ,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
       });
     });

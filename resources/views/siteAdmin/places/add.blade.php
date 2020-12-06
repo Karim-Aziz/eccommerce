@@ -155,6 +155,46 @@
                             </span>
                             @endif
                         </div>
+                        <div class="form-group">
+                            <label>review</label>
+                            <textarea id="review" class="form-control ckeditor" name="review"
+                                required>{{old('review')}}</textarea>
+                            @if ($errors->has('review'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('review') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>review Arbic</label>
+                            <textarea id="review_ar" class="form-control ckeditor" name="review_ar"
+                                required>{{old('review_ar')}}</textarea>
+                            @if ($errors->has('review_ar'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('review_ar') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>shipping</label>
+                            <textarea id="shipping" class="form-control ckeditor" name="shipping"
+                                required>{{old('shipping')}}</textarea>
+                            @if ($errors->has('shipping'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('shipping') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>shipping Arbic</label>
+                            <textarea id="shipping_ar" class="form-control ckeditor" name="shipping_ar"
+                                required>{{old('shipping_ar')}}</textarea>
+                            @if ($errors->has('shipping_ar'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('shipping_ar') }}</strong>
+                            </span>
+                            @endif
+                        </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <input type="submit" value="Add" class="btn btn-primary" >

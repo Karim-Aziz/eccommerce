@@ -32,9 +32,9 @@
                   @foreach ($pages as $page)
                     <li >
                     @if (App::isLocale('ar'))
-                      <a  href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name_ar }}</a>
+                      <a class="{{ Request::is('pages/'.@$page->id) ? 'active' : '' }}" href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name_ar }}</a>
                     @else
-                      <a href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name }}</a>
+                      <a class="{{ Request::is('pages/'.@$page->id) ? 'active' : '' }}" href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name }}</a>
                     @endif
                     </li>
                   @endforeach
@@ -49,9 +49,9 @@
                   @foreach (App\Size::all() as $item)
                       <li >
                       @if (App::isLocale('ar'))
-                        <a href="#" class="size-value" data-val="{{ @$item->name_ar }}"> {{ @$item->name_ar }}</a>
+                        <a href="#" class="size-value @if(request()->query('size')== @$item->name_ar) active @endif" data-val="{{ @$item->name_ar }}"> {{ @$item->name_ar }}</a>
                       @else
-                        <a href="#" class="size-value" data-val="{{ @$item->name }}"> {{ @$item->name }}</a>
+                        <a href="#" class="size-value @if(request()->query('size')== @$item->name) active @endif" data-val="{{ @$item->name }}"> {{ @$item->name }}</a>
                       @endif
                       </li>
                     @endforeach
@@ -66,9 +66,9 @@
                   @foreach (App\Color::all() as $item)
                       <li >
                       @if (App::isLocale('ar'))
-                        <a href="#" class="color-value" data-val="{{ @$item->name_ar }}"> {{ @$item->name_ar }}</a>
+                        <a href="#" class="color-value @if(request()->query('color')== @$item->name_ar) active @endif" data-val="{{ @$item->name_ar }}"> {{ @$item->name_ar }}</a>
                       @else
-                        <a href="#" class="color-value" data-val="{{ @$item->name }}"> {{ @$item->name }}</a>
+                        <a href="#" class="color-value @if(request()->query('color')== @$item->name) active @endif" data-val="{{ @$item->name }}"> {{ @$item->name }}</a>
                       @endif
                       </li>
                     @endforeach
@@ -196,6 +196,10 @@
     <!-- ================= Start Filter Product =================-->
 <div class="overlay-load"></div>
 <style>
+    .size .active,.cat .active, .color .active {
+      color: var(--main-color) !important;
+      font-weight: bold !important;
+    }
     .clickable-row{
         cursor: pointer;
     }
@@ -266,11 +270,23 @@
         });
 
         request.done(function(msg) {
-          alert( msg.message );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: msg.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
 
         request.fail(function(jqXHR, textStatus) {
-          alert( "Request failed: " + textStatus );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "Request failed: " + textStatus ,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
       });
       $('.cart-icon').on('click', function (e) {
@@ -286,11 +302,23 @@
         });
 
         request.done(function(msg) {
-          alert( msg.message );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: msg.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
 
         request.fail(function(jqXHR, textStatus) {
-          alert( "Request failed: " + textStatus );
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "Request failed: " + textStatus ,
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
       });
     });

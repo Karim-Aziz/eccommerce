@@ -120,16 +120,16 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto">
-              <li class="nav-item active">
-                <a class="nav-link active" href="<?php echo e(url('/')); ?>"><?php echo app('translator')->getFromJson('Home'); ?></a>
+              <li class="nav-item <?php echo e(Request::is('/') ? 'active' : ''); ?>">
+                <a class="nav-link <?php echo e(Request::is('/') ? 'active' : ''); ?>" href="<?php echo e(url('/')); ?>"><?php echo app('translator')->getFromJson('Home'); ?></a>
               </li>
               <?php if(count($pages) > 0): ?>
                 <?php $__currentLoopData = $pages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li class="nav-item">
+                  <li class="nav-item <?php echo e(Request::is('pages/'.@$page->id) ? 'active' : ''); ?>">
                     <?php if(App::isLocale('ar')): ?>
-                      <a class="nav-link" href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name_ar); ?></a>
+                      <a class="nav-link <?php echo e(Request::is('pages/'.@$page->id) ? 'active' : ''); ?>" href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name_ar); ?></a>
                     <?php else: ?>
-                      <a class="nav-link" href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name); ?></a>
+                      <a class="nav-link <?php echo e(Request::is('pages/'.@$page->id) ? 'active' : ''); ?>" href="<?php echo e(url('/pages/'.@$page->id)); ?>"> <?php echo e(@$page->name); ?></a>
                     <?php endif; ?>
                   </li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

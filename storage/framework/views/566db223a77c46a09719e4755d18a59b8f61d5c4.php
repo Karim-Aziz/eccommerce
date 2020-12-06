@@ -210,6 +210,50 @@
                                                     </span>
                                                     <?php endif; ?>
                                                 </div>
+                                                 <div class="form-group">
+                                                    <label>review</label>
+                                                    <textarea id="review" class="form-control ckeditor" name="review"
+                                                        required><?php echo e(old('review')? old('review'): $place->review); ?></textarea>
+                                                    <?php if($errors->has('review')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('review')); ?></strong>
+                                                    </span>
+                                                    <?php endif; ?>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>review Arbic</label>
+                                                    <textarea id="review_ar" class="form-control ckeditor" name="review_ar"
+                                                        required><?php echo e(old('review_ar')? old('review_ar'): $place->review_ar); ?></textarea>
+                                                    <?php if($errors->has('review_ar')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('review_ar')); ?></strong>
+                                                    </span>
+                                                    <?php endif; ?>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label>shipping</label>
+                                                    <textarea id="shipping" class="form-control ckeditor" name="shipping"
+                                                        required><?php echo e(old('shipping')? old('shipping'): $place->shipping); ?></textarea>
+                                                    <?php if($errors->has('shipping')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('shipping')); ?></strong>
+                                                    </span>
+                                                    <?php endif; ?>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>shipping Arbic</label>
+                                                    <textarea id="shipping_ar" class="form-control ckeditor" name="shipping_ar"
+                                                        required><?php echo e(old('shipping_ar')? old('shipping_ar'): $place->shipping_ar); ?></textarea>
+                                                    <?php if($errors->has('shipping_ar')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('shipping_ar')); ?></strong>
+                                                    </span>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="box-footer">
                                                     <input type="submit" value="update" class="btn btn-primary" >
                                                 </div>

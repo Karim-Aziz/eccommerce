@@ -101,6 +101,12 @@
                                 <ul class="list-group">
                                     <li class="list-group-item ">
                                         <strong>
+                                            total price :
+                                        </strong>
+                                        {{$Order->amount}}
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <strong>
                                             name :
                                         </strong>
                                         {{$Order->user->name}}
@@ -121,13 +127,13 @@
                                     @foreach ($Order->product as $product)
                                     <li class="list-group-item ">
                                         <strong>
-                                            place title :
+                                            product title :
                                         </strong>
                                         <a class="btn-block" href="{{ url('/pages/place/'.$product->place->id)}}" target="_blank">{{@$product->place->title}}</a>
                                     </li>
                                     <li class="list-group-item ">
                                         <strong>
-                                            page name :
+                                            Category name :
                                         </strong>
                                         {{@$product->place->page->name}}
                                     </li>

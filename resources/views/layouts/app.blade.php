@@ -119,16 +119,16 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto">
-              <li class="nav-item active">
-                <a class="nav-link active" href="{{ url('/') }}">@lang('Home')</a>
+              <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
+                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">@lang('Home')</a>
               </li>
               @if (count($pages) > 0)
                 @foreach ($pages as $page)
-                  <li class="nav-item">
+                  <li class="nav-item {{ Request::is('pages/'.@$page->id) ? 'active' : '' }}">
                     @if (App::isLocale('ar'))
-                      <a class="nav-link" href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name_ar }}</a>
+                      <a class="nav-link {{ Request::is('pages/'.@$page->id) ? 'active' : '' }}" href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name_ar }}</a>
                     @else
-                      <a class="nav-link" href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name }}</a>
+                      <a class="nav-link {{ Request::is('pages/'.@$page->id) ? 'active' : '' }}" href="{{url('/pages/'.@$page->id)}}"> {{ @$page->name }}</a>
                     @endif
                   </li>
                 @endforeach
