@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\siteAdmin;
 
+use App\Image;
 use App\Slider;
+use App\slider_images;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,9 +18,9 @@ class SliderController extends Controller
     // all Home Slider index
     public function index()
     {
-        $sliders = Slider::orderBy('id', 'desc')->get();
+        $slider = Slider::first();
         //return view('errors.404');
-        return view('siteAdmin.slider.index', compact('sliders'));
+        return view('siteAdmin.slider.index', compact('slider'));
     }
 
     // add new Home Slider
@@ -32,42 +34,36 @@ class SliderController extends Controller
     {
         $rules = Slider::rules($request);
         $request->validate($rules);
-
-        $slider = Slider::create([]);
-        $files = $request->file('images');
-        $id = $slider->id;
-        Slider::files($files, $id);
+        $file = $request->file('image');
+        Slider::file($file);
         return redirect()->back()->with('success', 'Add success');
     }
 
     // delete Home Slider
     public function delete($id)
     {
-        $slider = Slider::where('id', $id)->first();
-        if ($slider) {
-            Slider::destroy($id);
-            return redirect()->back()->with('success', 'Deleted success');
-        }
-        return view('errors.404');
+        $slider = Slider::first();
+        $slider_images = slider_images::where(['image_id' => $id, 'slider_id' => $slider->id])->first();
+        slider_images::destroy($slider_images->id);
+        $Image = Image::findOrFail($id);
+        unlink(public_path() . '/img/slider_images/'.$Image->name);
+        Image::destroy($id);
+        return redirect()->back()->with('success', 'Deleted success');
     }
 
     // delete Home Slider
     public function edit(Request $request, $id)
     {
-        $slider = Slider::where('id', $id)->first();
-
-        if ($slider) {
-            $rules = Slider::rules_update($request, $id);
-            $request->validate($rules);
-            //$credentials = Slider::credentials($request);
-            $slider->update([]);
-            if ($request->file('images') != null) {
-                $files = $request->file('images');
-                $id = $slider->id;
-                Slider::files($files, $id);
-            }
-            return redirect()->back()->with('success', 'Edit success');
-        }
-        return view('errors.404');
+        $rules = Slider::rules($request);
+        $request->validate($rules);
+        $slider = Slider::first();
+        $slider_images = slider_images::where(['image_id' => $id, 'slider_id' => $slider->id])->first();
+        slider_images::destroy($slider_images->id);
+        $Image = Image::findOrFail($id);
+        unlink(public_path() . '/img/slider_images/'.$Image->name);
+        Image::destroy($id);
+        $file = $request->file('image');
+        Slider::file($file);
+        return redirect()->back()->with('success', 'Edit success');
     }
 }

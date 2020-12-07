@@ -3,7 +3,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Add Home Slider and Images
+        Add  Image To Home Slider
     </h1>
 </section>
 <div class="row">
@@ -29,16 +29,11 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label>Images</label>
-                            <input name="images[]" class="form-control" type="file" multiple="multiple">
+                            <label>Image</label>
+                            <input name="image" class="form-control" type="file">
                             @if ($errors->has('images'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('images') }}</strong>
-                            </span>
-                            @endif
-                            @if ($errors->has('images.*'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('images.*') }}</strong>
+                                <strong>{{ $errors->first('image') }}</strong>
                             </span>
                             @endif
                         </div>

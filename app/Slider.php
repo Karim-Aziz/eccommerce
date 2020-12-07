@@ -14,8 +14,7 @@ class Slider extends Model
     public static function rules($request)
     {
         $rules = [
-            'images' => 'required',
-            'images.*' => 'image|mimes:jpg,jpeg,gif,png,WebP',
+            'image' => 'required|image|mimes:jpg,jpeg,gif,png,WebP',
         ];
         return $rules;
     }
@@ -49,6 +48,18 @@ class Slider extends Model
             $data = ['slider_id' => $id, 'image_id' => $Image->id];
             slider_images::create($data);
         }
+    }
+    
+    public static function file($file)
+    {
+        $slider = self::first();
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time() . rand(11111, 99999) . '.' . $extension;
+        $destinationPath = public_path() . '/img/slider_images/';
+        $file->move($destinationPath, $fileName);
+        $Image = Image::create(['name' => $fileName]);
+        $data = ['slider_id' => $slider->id, 'image_id' => $Image->id];
+        slider_images::create($data);
     }
 
     public function images()

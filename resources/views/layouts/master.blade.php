@@ -125,14 +125,12 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            {{--
                             <li>
                                 <a href="{{ url('/siteAdmin/slider/add') }}">
                                     <i class="fa fa-circle-o"></i>
                                     Add image
                                 </a>
                             </li>
-                            --}}
                             <li>
                                 <a href="{{ url('/siteAdmin/slider/show') }}">
                                     <i class="fa fa-circle-o"></i>

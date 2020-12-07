@@ -91,6 +91,7 @@ Route::group(['prefix' => '/siteAdmin'], function () {
         Route::get('/add', 'siteAdmin\SliderController@add');
         Route::post('/insert', 'siteAdmin\SliderController@insert');
         Route::post('/edit/{id}', 'siteAdmin\SliderController@edit');
+        Route::get('/delete/{id}', 'siteAdmin\SliderController@delete');
     });
     Route::group([  'prefix'=>'/brand'],function(){
         Route::get('/show', 'siteAdmin\BrandController@index');
