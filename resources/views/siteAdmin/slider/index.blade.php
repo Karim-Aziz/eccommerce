@@ -42,7 +42,6 @@
                                                 src="{{'/img/slider_images/'.@$image->name}}"
                                                 data-toggle="modal"
                                                 data-target="#modal-default{{$image->id}}">
-
                                             <div class="form-group">
                                                 <label>image</label>
                                                 <input name="image" class="form-control" type="file"
@@ -57,11 +56,9 @@
                                         <div class="box-footer">
                                             <input type="submit" value="update" class="btn btn-primary" >
                                         </div>
-
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default pull-left"
-                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                                     </div>
                                     </form>
                                 </div>
@@ -83,10 +80,11 @@
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1"
                                                 aria-label="image: activate to sort column ascending">Image
-                                                </th>
+                                            </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1"
-                                                aria-label="Actions: activate to sort column ascending">Actions</th>
+                                                aria-label="Actions: activate to sort column ascending">Actions
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
